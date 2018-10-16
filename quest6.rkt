@@ -113,7 +113,7 @@
                                         (p:text "All the code for your house...")
                                         (p:text "(Can you do it without looking?)"))))))
 
-(define (it-makes-a-village-worksheet)
+(define (it-makes-a-village-worksheets)
   (define sheets
     (list
      (p:vl-append 20
@@ -136,8 +136,9 @@
                   (p:text "Sixth house")
                   (house-placer-worksheet-4))))
 
-  (map (curryr p:scale 2)
-       sheets))
+  (map p:frame
+       (map (curryr p:scale 2)
+            sheets)))
 
 
 ;TODO: Change this.  It's copied from quest4...
@@ -155,6 +156,14 @@
             (with-award 1 change-npc-speed)
             (with-award 2 draw-and-add-npc)))))
 
-(define (quest6)
+(define (quest-cards)
   (map shrink
        (make-picts "red" "Q2-" day6-2dgame (settings (bg (local-bitmap "bg-arcade.png")) MARIO MARIO-BONUS MARIO-BONUS))))
+
+(define (quest6)
+  (append (quest-cards)
+          (it-makes-a-village-worksheets)
+          )
+  )
+
+
