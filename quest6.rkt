@@ -174,6 +174,25 @@
                (p:text "Sixth house")
                (house-placer-worksheet-4))
 
+(define (add-builder-code)
+  (define b (p:code
+             (builder (posn 100 100)
+                      (wood-house))))
+  
+  (define the-code (p:code
+                    (start-game (instructions-entity)
+
+                                #,b
+            
+                                (item-entity (posn 200 200))
+                                (npc1-entity)
+                                (player-entity)
+                                (bg-entity))))
+
+  the-code
+
+  ;need to add code-hints 
+  )
 
 (define (add-builder t)
   (activity-instructions (~a "Add " (string-titlecase t) " Builder Code")
