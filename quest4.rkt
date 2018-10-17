@@ -23,4 +23,4 @@
 
 (define (quest4)
   (map shrink
-       (make-picts "red" "Q2-" day4-2dgame (settings (bg (local-bitmap "bg-arcade.png")) MARIO MARIO-BONUS MARIO-BONUS))))
+       (make-picts "red" "Q4-" day4-2dgame (settings (bg (local-bitmap "bg-arcade.png")) STAR STAR-BONUS STAR-BONUS))))
