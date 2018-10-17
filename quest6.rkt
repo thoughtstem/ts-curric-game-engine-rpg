@@ -182,8 +182,8 @@
                                (instruction-basic "Add the new code to the start-game function.")
                                (instruction-goal "the new code in your file."))
                          (image-qr "http://www.google.com"
-                          ;add image of start-game and builder code
-                          ;make image a parameter?
+                          ;add image of builder code in start-game, arrow to new code
+                          ;make the "provider-of" part of code image a parameter?
                           )))
 
 (define (try-builder t)
@@ -201,7 +201,7 @@
                           extra-instructions
                           (list (instruction-goal "your builder working in game!")))
                          (image-qr "http://www.google.com"
-                          ;image of houses in game?
+                          ;image of houses in game? no qr needed?
                           )))
 
 (define use-worksheet
@@ -212,7 +212,7 @@
                                (instruction-basic "Place and note the locations of three additional houses.")
                                (instruction-goal "your completed worksheet."))
                          (video-qr "https://www.google.com"
-                                   ;video here? Or image showing where in the interactions window is?
+                                   ;video here showing builder at work? Or image showing where in the interactions window is?
                                    )))
 
 (define code-first-house
@@ -223,13 +223,56 @@
                                (instruction-basic "Test your game!")
                                (instruction-goal "your house code in start-game."))
                          (video-qr "https://www.google.com"
-                                   ;add image of first house code in start game
+                                   ;add image of first house code in start game, arrow to new code
+                                   )))
+
+(define code-houses
+  (activity-instructions "Code your Village"
+                         '()
+                         (list (instruction-basic "Add the code for the rest of your houses to start-game.")
+                               (instruction-basic "Be sure to test your game!")
+                               (instruction-goal "all your new code in start-game."))
+                         (video-qr "https://www.google.com"
+                                   ;add image of ....?
+                                   )))
+
+(define remove-builder
+  (activity-instructions "Remove Builder Code"
+                         '()
+                         (list (instruction-basic "Scan QR to see example code.")
+                               (instruction-basic "Delete the builder code from start-game.")
+                               (instruction-goal "your updated start-game code."))
+                         (video-qr "https://www.google.com"
+                                   ;add image of code, highlighting the builder code to be deleted.
+                                   )))
+
+(define mini-map
+  (activity-instructions "Add Mini Map!"
+                         '()
+                         (list (instruction-basic "Scan QR to see code.")
+                               (instruction-basic (text-with-image "Add the line of code to the " (codify "bg-entity")))
+                               (instruction-basic "Test your game! Which key on your keyboard will open the mini map? Close it?")
+                               (instruction-goal "your mini-map in game!"))
+                         (video-qr "https://www.google.com"
+                                   ;add image of code mini-map in bg-entity, arrow to new code
+                                   )))
+
+(define (use-builder t)
+  (activity-instructions (~a "Place and Code Your " (string-titlecase t))
+                         '()
+                         (list (instruction-basic (~a "Use the builder to place the " (string-downcase t) "."))
+                               (instruction-basic (text-with-image "Note the " (codify "posn") " and " (codify "active-on-bg") "."))
+                               (instruction-basic "Remember: that information will appear in the interactions window!")
+                               (instruction-basic (~a "Add the code for your " (string-downcase t) " to start-game."))
+                               (instruction-goal "all your new code in start-game."))
+                         (video-qr "https://www.google.com"
+                                   ;add image of sample code?
                                    )))
 
 (define day6-2dgame
   (list
    ;card 1 -- add builder
-   (with-award 2 (add-builder "House"))
+   (with-award 1 (add-builder "House"))
    ;card 2 -- try builder (try with other house)
    (with-award 0 (try-builder "house"))
    ;card 3 -- worksheet
@@ -237,17 +280,19 @@
    ;4 -- put 1st in start-game
    (with-award 1 code-first-house)
    ;5 -- put rest in start-game
-   ;6 -- remove builder??
+   (with-award 2 code-houses)
+   ;6 -- remove builder
+   (with-award 1 remove-builder)
    ;bonus cards
-   ;6 -- add mini map
-   ;7 -- add npc builder
-   ;8 -- use builder to not loc of new npc
-   ;9 -- add to start-game
-   #;(choose "any"
+   (choose "any"
            (list
-            (with-award 1 (make-npc "follow"))
-            (with-award 1 change-npc-speed)
-            (with-award 2 draw-and-add-npc)))))
+            ;7 -- add mini map
+            (with-award 1 mini-map)
+            ;8 -- add npc builder
+            (with-award 1 (add-builder "NPC"))
+            ;9 -- use builder to note loc of new npc and add to start-game
+            (with-award 3 (use-builder "NPC"))
+            ))))
 
 (define (quest-cards)
   (map shrink
