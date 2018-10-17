@@ -174,25 +174,33 @@
                (p:text "Sixth house")
                (house-placer-worksheet-4))
 
-(define (add-builder-code)
-  (define b (p:code
-             (builder (posn 100 100)
-                      (wood-house))))
+(define (add-builder-code t)
+  (define type
+    (cond [(string=? (string-downcase t) "house") (p:code wood-house)]
+          [(string=? (string-downcase t) "npc")   (p:code npc1-entity)]
+          [else (p:code ghost)]))
+  (define b (p:frame (p:code
+                      (builder (posn 200 200)
+                               (#,type))) #:color "red"))
   
   (define the-code (p:code
                     (start-game (instructions-entity)
-
                                 #,b
-            
                                 (item-entity (posn 200 200))
                                 (npc1-entity)
                                 (player-entity)
                                 (bg-entity))))
 
-  the-code
-
-  ;need to add code-hints 
+  (code+hints the-code
+              (list b
+                    (hint
+                     (p:vc-append
+                      (p:text "Add this code")
+                      (p:text "inside start-game.")))))
   )
+
+(add-builder-code "House")
+(add-builder-code "NPC")
 
 (define (add-builder t)
   (activity-instructions (~a "Add " (string-titlecase t) " Builder Code")
@@ -293,7 +301,7 @@
    ;card 1 -- add builder
    (with-award 1 (add-builder "House"))
    ;card 2 -- try builder (try with other house)
-   (with-award 0 (try-builder "house"))
+   (with-award 0 (try-builder "House"))
    ;card 3 -- worksheet
    (with-award 2 use-worksheet)
    ;4 -- put 1st in start-game
@@ -317,7 +325,6 @@
   (map shrink
        (make-picts "red" "Q6-" day6-2dgame (settings (bg (local-bitmap "bg-arcade.png")) LINK LINK-BONUS LINK-BONUS))))
 
-(quest-cards)
 
 (define (quest6)
   (append (quest-cards)
