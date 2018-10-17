@@ -10,6 +10,16 @@
 
 (require (prefix-in p: pict/code))
 (require (prefix-in p: pict))
+(require racket/runtime-path)
+
+
+#;(
+   (define-runtime-path images "images")
+   (define i2 (p:colorize (p:circle 100) "green"))
+   (define-image-file  my-circ  images  i2)
+
+   (launcher-img my-circ) )
+
 
 
 (require "./common.rkt")
