@@ -12,14 +12,7 @@
 (require (prefix-in p: pict))
 (require racket/runtime-path)
 
-
-#;(
-   (define-runtime-path images "images")
-   (define i2 (p:colorize (p:circle 100) "green"))
-   (define-image-file  my-circ  images  i2)
-
-   (launcher-img my-circ) )
-
+(define-runtime-path images "images")
 
 
 (require "./common.rkt")
@@ -209,8 +202,10 @@
                       (p:text "inside start-game.")))))
   )
 
-(add-builder-code "House")
-(add-builder-code "NPC")
+
+(define-image-file house-builder-code images (add-builder-code "Housee"))
+(define-image-file npc-builder-code   images (add-builder-code "NPC"))
+
 
 (define (add-builder t)
   (activity-instructions (~a "Add " (string-titlecase t) " Builder Code")
@@ -218,10 +213,8 @@
                          (list (instruction-basic "Scan the QR to see the code.")
                                (instruction-basic "Add the new code to the start-game function.")
                                (instruction-goal "the new code in your file."))
-                         (image-qr "http://www.google.com"
-                          ;add image of builder code in start-game, arrow to new code
-                          ;make the "provider-of" part of code image a parameter?
-                          )))
+                         (launcher-img house-builder-code)
+                         ))
 
 (define (try-builder t)
   (define extra-instructions
