@@ -203,17 +203,21 @@
   )
 
 
-(define-image-file house-builder-code images (add-builder-code "Housee"))
+(define-image-file builder-code images (add-builder-code "Housee"))
 (define-image-file npc-builder-code   images (add-builder-code "NPC"))
 
 
 (define (add-builder t)
+  (define img
+    (if (string=? (string-downcase t) "npc")
+        npc-builder-code
+        builder-code))
   (activity-instructions (~a "Add " (string-titlecase t) " Builder Code")
                          '()
-                         (list (instruction-basic "Scan the QR to see the code.")
+                         (list (instruction-basic "Type the code in the interactions window to see the code.")
                                (instruction-basic "Add the new code to the start-game function.")
                                (instruction-goal "the new code in your file."))
-                         (launcher-img house-builder-code)
+                         (launcher-img img)
                          ))
 
 (define (try-builder t)
