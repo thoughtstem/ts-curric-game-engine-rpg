@@ -27,6 +27,16 @@
   (p:frame
    (p:inset i 10)))
 
+(define (x-out img)
+  (define img-slash (p:pin-line img
+                               img p:lt-find
+                               img p:rb-find
+                               #:color "red"))
+  (p:pin-line img-slash
+              img-slash p:lb-find
+              img-slash p:rt-find
+              #:color "red"))
+
 
 (define (house-placer-worksheet-1)
   (define house-type (code-blank))
@@ -199,13 +209,95 @@
                     (hint
                      (p:vc-append
                       (p:text "Add this code")
-                      (p:text "inside start-game.")))))
-  )
+                      (p:text "inside start-game."))))))
+
+(define (code-first-house-code)
+  (define w (p:frame (p:code
+                      (wood-house (posn 325 120)
+                                  #:components
+                                  (active-on-bg 0))) #:color "red"))
+  
+  (define the-code (p:code
+                    (start-game (instructions-entity)
+                                (builder (posn 200 200)
+                                         (wood-house))
+                                #,w
+                                (item-entity (posn 200 200))
+                                (npc1-entity)
+                                (player-entity)
+                                (bg-entity))))
+
+  (p:scale (code+hints the-code
+                       (list w
+                             (hint
+                              (p:vc-append
+                               (p:text "New Code!")
+                               (p:text "Exactly as written on")
+                               (p:text "your worksheet"))))) 1.5))
 
 
-(define-image-file builder-code images (add-builder-code "Housee"))
+(define (remove-builder-code)
+
+  (define b (p:frame (p:code
+                      (builder (posn 200 200)
+                               (wood-house))) #:color "red"))
+  (define xb (x-out b))
+  
+  (define the-code (p:code
+                    (start-game (instructions-entity)
+                                #,xb
+                                (wood-house (posn 325 120)
+                                            #:components
+                                            (active-on-bg 0))
+                                (wood-house (posn 80 100)
+                                            #:components
+                                            (active-on-bg 1))
+                                (wood-house (posn 300 200)
+                                            #:components
+                                            (active-on-bg 0))
+                                (wood-house (posn 100 180)
+                                            #:components
+                                            (active-on-bg 1))
+                                (item-entity (posn 200 200))
+                                (npc1-entity)
+                                (player-entity)
+                                (bg-entity))))
+
+  (code+hints the-code
+              (list b
+                    (hint
+                     (p:vc-append
+                      (p:text "Delete this code.")
+                      (p:text "Mind the parentheses!"))))))
+
+(define (mini-map-code)
+  (define m (p:frame (p:code
+                      (on-key "m" (open-mini-map #:close-key 'o))) #:color "red"))
+  
+  (define the-code (p:code
+                    (define (bg-entity)
+                      (sprite->entity (render-tile (snow-backdrop))
+                                      #:name     "bg"
+                                      #:position   (posn 0 0)
+                                      #:components (static)
+                                                   #,m
+                                                   (snow-backdrop)))))
+  (code+hints the-code
+              (list m
+                    (hint
+                     (p:vc-append
+                      (p:text "Add this line to the")
+                      (p:text "components of your bg-entity.")
+                      (p:text "Mind the parentheses!"))))))
+
+
+;some of these are awfully wide to be in the vertical interactions window.
+;maybe make the hints optional to go side or bottom?
+(define-image-file builder-code       images (add-builder-code "House"))
 (define-image-file npc-builder-code   images (add-builder-code "NPC"))
-
+(define-image-file house-code         images (code-first-house-code))
+(define-image-file delete-builder     images (remove-builder-code))
+(define-image-file map-code           images (mini-map-code))
 
 (define (add-builder t)
   (define img
@@ -214,7 +306,7 @@
         builder-code))
   (activity-instructions (~a "Add " (string-titlecase t) " Builder Code")
                          '()
-                         (list (instruction-basic "Type the code in the interactions window to see the code.")
+                         (list (instruction-basic "<---Type in the interactions window to see the code.")
                                (instruction-basic "Add the new code to the start-game function.")
                                (instruction-goal "the new code in your file."))
                          (launcher-img img)
@@ -222,7 +314,7 @@
 
 (define (try-builder t)
   (define extra-instructions
-    (if (eq? t "house")
+    (if (string=? (string-downcase t) "house")
         (list (instruction-basic "Go back to the code and change:")
               (instruction-basic (text-with-image (codify "wood-house") " to " (codify "stone-house"))))
         '()))
@@ -234,9 +326,7 @@
                                 (instruction-basic (~a "Use the x key to place the " (string-downcase t))))
                           extra-instructions
                           (list (instruction-goal "your builder working in game!")))
-                         (image-qr "http://www.google.com"
-                          ;image of houses in game? no qr needed?
-                          )))
+                         (p:scale (p:bitmap "images/q6-houses.png") .3)))
 
 (define use-worksheet
   (activity-instructions "Create Your Village"
@@ -245,20 +335,16 @@
                                (instruction-basic "Use the information printed out in the interactions window to fill out the First House on your worksheet")
                                (instruction-basic "Place and note the locations of three additional houses.")
                                (instruction-goal "your completed worksheet."))
-                         (video-qr "https://www.google.com"
-                                   ;video here showing builder at work? Or image showing where in the interactions window is?
-                                   )))
+                         (image-qr "https://bit.ly/2yKlpVn")))
 
 (define code-first-house
   (activity-instructions "Code your First House"
                          '()
-                         (list (instruction-basic "Scan the QR to see example code.")
+                         (list (instruction-basic "<--- Type in the interactions window to see example code.")
                                (instruction-basic "Add the code for your First House on your worksheet to start-game.")
                                (instruction-basic "Test your game!")
                                (instruction-goal "your house code in start-game."))
-                         (video-qr "https://www.google.com"
-                                   ;add image of first house code in start game, arrow to new code
-                                   )))
+                         (launcher-img house-code)))
 
 (define code-houses
   (activity-instructions "Code your Village"
@@ -266,19 +352,15 @@
                          (list (instruction-basic "Add the code for the rest of your houses to start-game.")
                                (instruction-basic "Be sure to test your game!")
                                (instruction-goal "all your new code in start-game."))
-                         (video-qr "https://www.google.com"
-                                   ;add image of ....?
-                                   )))
+                         (p:scale (p:bitmap "images/q6-houses.png") .3)))
 
 (define remove-builder
   (activity-instructions "Remove Builder Code"
                          '()
-                         (list (instruction-basic "Scan QR to see example code.")
+                         (list (instruction-basic "<--- Type in the interations window to see example code.")
                                (instruction-basic "Delete the builder code from start-game.")
                                (instruction-goal "your updated start-game code."))
-                         (video-qr "https://www.google.com"
-                                   ;add image of code, highlighting the builder code to be deleted.
-                                   )))
+                         (launcher-img delete-builder)))
 
 (define mini-map
   (activity-instructions "Add Mini Map!"
@@ -287,9 +369,7 @@
                                (instruction-basic (text-with-image "Add the line of code to the " (codify "bg-entity")))
                                (instruction-basic "Test your game! Which key on your keyboard will open the mini map? Close it?")
                                (instruction-goal "your mini-map in game!"))
-                         (video-qr "https://www.google.com"
-                                   ;add image of code mini-map in bg-entity, arrow to new code
-                                   )))
+                         (launcher-img map-code)))
 
 (define (use-builder t)
   (activity-instructions (~a "Place and Code Your " (string-titlecase t))
@@ -299,9 +379,7 @@
                                (instruction-basic "Remember: that information will appear in the interactions window!")
                                (instruction-basic (~a "Add the code for your " (string-downcase t) " to start-game."))
                                (instruction-goal "all your new code in start-game."))
-                         (video-qr "https://www.google.com"
-                                   ;add image of sample code?
-                                   )))
+                         (p:scale (p:bitmap "images/q6-npcs-everywhere.png") .4)))
 
 (define day6-2dgame
   (list
