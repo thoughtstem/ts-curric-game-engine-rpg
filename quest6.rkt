@@ -203,7 +203,7 @@
   )
 
 
-(define-image-file house-builder-code images (add-builder-code "Housee"))
+(define-image-file house-builder-code images (add-builder-code "House"))
 (define-image-file npc-builder-code   images (add-builder-code "NPC"))
 
 
