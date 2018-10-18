@@ -336,7 +336,6 @@
 (define (quest6)
   (append (quest-cards)
           (it-makes-a-village-worksheet)
-          (p:circle 40)
           )
   )
 
