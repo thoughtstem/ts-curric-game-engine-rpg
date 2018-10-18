@@ -1,4 +1,4 @@
-#lang racket
+#lang slideshow
 
 (provide quest3)
 
@@ -31,3 +31,5 @@
 (define (quest3)
   (map shrink
        (make-picts "red" "Q3-" day3-2dgame (settings (bg (local-bitmap "bg-arcade.png")) G-MUSH G-MUSH-BONUS G-MUSH-BONUS))))
+
+;(map slide (make-picts "red" "Q3-" day3-2dgame (settings (bg (local-bitmap "bg-arcade.png")) G-MUSH G-MUSH-BONUS G-MUSH-BONUS)))

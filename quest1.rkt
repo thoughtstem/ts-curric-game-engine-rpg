@@ -1,4 +1,4 @@
-#lang racket
+#lang slideshow
 
 (provide quest1)
 
@@ -27,3 +27,5 @@
 (define (quest1)
   (map shrink
        (make-picts "red" "Q1-" day1-2dgame (settings (bg (local-bitmap "bg-arcade.png")) PACMAN PACMAN-BONUS PACMAN-BONUS))))
+
+;(map slide (make-picts "red" "Q1-" day1-2dgame (settings (bg (local-bitmap "bg-arcade.png")) PACMAN PACMAN-BONUS PACMAN-BONUS)))

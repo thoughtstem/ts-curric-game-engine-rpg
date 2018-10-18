@@ -5,8 +5,7 @@
 (require ts-curric-common)
 (require "./common.rkt")
 (require (except-in ts-racket
-                    scale-to-fit
-                    frame))
+                    scale-to-fit))
 
 ;------ Start Quest 5 cards ---
 (define add-backpack
@@ -112,18 +111,22 @@
            ))
    ))
 
+(define (quest5-full)
+  (make-picts "red" "Q5-" day5-2dgame (settings (bg (local-bitmap "bg-arcade.png")) R-MUSH R-MUSH-BONUS R-MUSH-BONUS)))
+
 (define (quest5)
   (map shrink
-       (make-picts "red" "Q5-" day5-2dgame (settings (bg (local-bitmap "bg-arcade.png")) R-MUSH R-MUSH-BONUS R-MUSH-BONUS))))
+       (quest5-full)))
 
 ; ==== TEST 3x3 PNG for Printing ======
 ; includes inset and frame
 (define large-3x3-png
   (cards->pages (map (curryr frame #:line-width 2)
                    (map (curryr inset 20)
-                        (make-picts "red" "Q5-" day5-2dgame (settings (bg (local-bitmap "bg-arcade.png")) R-MUSH R-MUSH-BONUS R-MUSH-BONUS))))))
+                        (quest5-full)))))
 
-(map slide (make-picts "red" "Q5-" day5-2dgame (settings (bg (local-bitmap "bg-arcade.png")) R-MUSH R-MUSH-BONUS R-MUSH-BONUS)))
+;(save-out-materials "tsdg-quest5" (quest5-full))
 
-; Run "C:\Racket\Slideshow.exe --pdf .\quest5.rkt" to print from command line as a full-size pdf
+;(map slide (make-picts "red" "Q5-" day5-2dgame (settings (bg (local-bitmap "bg-arcade.png")) R-MUSH R-MUSH-BONUS R-MUSH-BONUS)))
+
 
