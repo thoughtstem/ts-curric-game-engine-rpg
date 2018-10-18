@@ -1,0 +1,36 @@
+#lang slideshow
+
+(require ts-curric-common)
+(require racket/runtime-path)
+
+(define-runtime-path test-path "test3")
+
+(define i (circle 50))
+
+(define (store-image! i path name)
+  (save-any i (build-path path (~a name ".png")) 'png))
+
+(define (installed-image-path path name)
+  (define backwards-path-elems (reverse (explode-path path)))
+  (define package-name (third backwards-path-elems))
+  (define dir-name     (second backwards-path-elems))
+  
+  (~a "file:///home/thoughtstem/.racket/pkgs/" package-name "/" dir-name "/" name ".png"))
+
+;TODO: identifies not strings...
+(store-image! i test-path "circle-fun")
+
+(installed-image-path test-path "circle-fun")
+
+(define test
+  (with-award 1
+    (activity-instructions "Test"
+                           '()
+                           (list (instruction-basic "Scan the card to open the Game Review.")
+                                 (instruction-basic "Answer the questions about the demo games.")
+                                 (instruction-goal "your Google Form submitted."))
+                           (image-qr "file:///Users/thoughtstem/Desktop/Temp4.rkt"))))
+
+
+#;(make-picts "red" "Q2-" test
+            (settings (bg i) i i i))
