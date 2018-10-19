@@ -335,8 +335,6 @@
 
 (define (quest6)
   (append (quest-cards)
-          (it-makes-a-village-worksheet)
-          )
-  )
+          (it-makes-a-village-worksheet)))
 
 
