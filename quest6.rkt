@@ -245,14 +245,19 @@
 
   (define k (p:frame (p:code
                       #:name "Mario"
-                      #:mode 'pace) #:color "orange"))
+                      #:mode 'pace) #:color "red"))
+
+  (define r (p:frame (p:code (random-npc (posn 100 100)
+                                          #:tile 5
+                                          #,k)) #:color "red"))
   
   (define the-code (p:code
                     (start-game (instructions-entity)
+                                (wood-house (posn 100 300)
+                                            #:tile 5)
+                                (builder (posn 200 200) random-npc)
                                 ;need a way to frame this larger bit that include the code hint portion
-                                (random-npc (posn 100 100)
-                                            #:tile 5
-                                            #,k)
+                                #,r
                                 (item-entity (posn 200 200))
                                 (npc1-entity)
                                 (player-entity)
