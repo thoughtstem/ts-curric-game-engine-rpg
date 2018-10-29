@@ -403,6 +403,7 @@
 
 (define (quest6)
   (append (quest-cards)
-          (it-makes-a-village-worksheet)))
+          (list (it-makes-a-village-worksheet))))
 
-
+(module+ test
+  (quest6))
