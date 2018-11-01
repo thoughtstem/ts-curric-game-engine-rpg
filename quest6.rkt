@@ -274,6 +274,7 @@
 ;some of these are awfully wide to be in the vertical interactions window.
 ;maybe make the hints optional to go side or bottom?
 (define-image-file builder-code       images (add-builder-code "House"))
+
 (define-image-file npc-builder-code   images (add-builder-code "NPC"))
 (define-image-file house-code         images (code-first-house-code))
 (define-image-file delete-builder     images (remove-builder-code))
@@ -307,7 +308,7 @@
                                 (instruction-basic (~a "Use the x key to place the " (string-downcase t))))
                           extra-instructions
                           (list (instruction-goal "your builder working in game!")))
-                         (p:scale (p:bitmap "images/q6-houses.png") .3)))
+                         (p:scale (local-bitmap "q6-houses.png") .3)))
 
 (define use-worksheet
   (activity-instructions "Create Your Village"
@@ -333,7 +334,7 @@
                          (list (instruction-basic "Add the code for the rest of your houses to start-game.")
                                (instruction-basic "Be sure to test your game!")
                                (instruction-goal "all your new code in start-game."))
-                         (p:scale (p:bitmap "images/q6-houses.png") .3)))
+                         (p:scale (local-bitmap "q6-houses.png") .3)))
 
 (define remove-builder
   (activity-instructions "Remove Builder Code"
@@ -359,7 +360,7 @@
                                (instruction-basic (text-with-image "Note the " (codify "posn") " and tile."))
                                (instruction-basic "Hint: You can write it on the back of your worksheet!")
                                (instruction-goal (~a "your position notes for your " (string-downcase t) ".")))
-                         (p:scale (p:bitmap "images/q6-npcs-everywhere.png") .4)))
+                         (p:scale (local-bitmap "q6-npcs-everywhere.png") .4)))
 
 (define (code-from-builder)
   (activity-instructions "Code Your NPCs"
