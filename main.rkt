@@ -7,5 +7,6 @@
   quest3
   quest4
   quest5
-  quest6)
+  quest6
+  quest8)
 

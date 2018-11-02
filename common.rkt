@@ -27,6 +27,8 @@
          make-npc
          change-npc-speed
          draw-and-add-npc
+         add-builder
+         remove-builder
          
          MARIO        
          MARIO-BONUS  
@@ -56,7 +58,8 @@
 
 
 (require pict/code)
-(require ts-curric-common)
+(require ts-curric-common
+         (only-in ts-racket x-out code+hints hint))
 
 (require racket/runtime-path)
 (define-runtime-path images "images")
@@ -473,9 +476,60 @@
                                (instruction-goal "your completed texture."))
                          (scale-to-fit (local-bitmap "leia-avatar.png") 250 320 #:mode 'preserve)))
 
+(define (add-builder t launch)
+  (activity-instructions (~a "Add " (string-titlecase t) " Builder Code")
+                         '()
+                         (list (instruction-basic "Use the launcher to see the code.")
+                               (instruction-basic "Add the new code to the start-game function.")
+                               (instruction-goal "the new code in your file."))
+                         (launcher-img launch)
+                         ))
+
 
 
 (define (shrink i)
   (reusable-material
    (scale i 0.5)))
+
+
+
+
+(define (remove-builder-code)
+
+  (define b (frame (code
+                      (builder (posn 200 200) wood-house)) #:color "red"))
+  (define xb (x-out b))
+  
+  (define the-code (code
+                    (start-game (instructions-entity)
+                                #,xb
+                                (wood-house (posn 325 120)
+                                            #:tile 1)
+                                (wood-house (posn 80 10)
+                                            #:tile 1)
+                                (wood-house (posn 300 200)
+                                            #:tile 0)
+                                (wood-house (posn 50 180)
+                                            #:tile 0)
+                                (item-entity (posn 200 200))
+                                (npc1-entity)
+                                (player-entity)
+                                (bg-entity))))
+
+  (code+hints the-code
+              (list b
+                    (hint
+                     (vc-append
+                      (text "Delete this code.")
+                      (text "Mind the parentheses!"))))))
+
+(define-image-file delete-builder     images (remove-builder-code))
+
+(define remove-builder
+  (activity-instructions "Remove Builder Code"
+                         '()
+                         (list (instruction-basic "Delete the builder code from start-game.")
+                               (instruction-basic "Use the launcher to see sample code.")
+                               (instruction-goal "your updated start-game code."))
+                         (launcher-img delete-builder)))
 
