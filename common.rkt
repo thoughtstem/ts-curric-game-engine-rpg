@@ -475,9 +475,6 @@
 
 
 
-
-
-
 (define (shrink i)
   (reusable-material
    (scale i 0.5)))

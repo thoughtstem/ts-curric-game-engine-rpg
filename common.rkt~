@@ -1,5 +1,59 @@
 #lang slideshow
 
+(provide shrink
+         open-racket-only
+         load-code
+         load-code-more
+         google-form
+         draw-sprite-style
+         export-from-piskel
+         reload-fave
+         save-as
+         replace-sheet
+         local-bitmap
+         draw-sprite
+         open-file
+         test-game
+         import-to-piskel
+         redesign-sprite
+         change-player-position
+         change-starting-tile
+         animate
+         export-sprite-sheet
+         import-sprite-sheet
+         change-player-dialog
+         change-npc-dialog
+         add-new-dialog
+         make-npc
+         change-npc-speed
+         draw-and-add-npc
+         
+         MARIO        
+         MARIO-BONUS  
+         PACMAN       
+         PACMAN-BONUS
+         G-MUSH       
+         G-MUSH-BONUS 
+         R-MUSH      
+         R-MUSH-BONUS 
+         STAR         
+         STAR-BONUS  
+         LINK       
+         LINK-BONUS   
+         SAMUS       
+         SAMUS-BONUS
+         PIKACHU          
+         PIKACHU-BONUS   
+         CHARMANDER     
+         CHARMANDER-BONUS
+         SQUIRTLE       
+         SQUIRTLE-BONUS
+         YOSHI        
+         YOSHI-BONUS 
+         SONIC      
+         SONIC-BONUS  )
+
+
 
 (require pict/code)
 (require ts-curric-common)
@@ -203,7 +257,7 @@
                           (instruction-basic "Save your code.")
                           (instruction-basic "Click 'Run' to test the game.")
                           (instruction-goal "your new changes running in game."))
-                        (scale-to-fit (bitmap "click_run.png") 250 250 #:mode 'preserve)))
+                        (scale-to-fit (local-bitmap "click_run.png") 250 250 #:mode 'preserve)))
 
 (define (another-sprite url)
   (activity-instructions "Use Another Sprite"
@@ -420,109 +474,11 @@
                          (scale-to-fit (local-bitmap "leia-avatar.png") 250 320 #:mode 'preserve)))
 
 
-(define day1-2dgame
-  (list
-   (with-award 0 open-racket-only)
-   (with-award 2 (load-code "tsgd_style_1"))
-   (with-award 1 (load-code-more "4" "load_style.png"))
-   (with-award 3 (google-form "http://bit.ly/2NizLFU"))
-   (with-award 2 (draw-sprite-style "betty_single.png" "Character"))
-   (with-award 0 export-from-piskel)
-   (choose "any"
-           (list
-            (with-award 0 reload-fave)
-            (with-award 1 save-as)
-            (with-award 1 (replace-sheet "http://bit.ly/2FTnKD7"))
-            ))
-   ))
 
-;Design your own Collectible
-(define day2-2dgame
-  (list
-   ;(with-award 1 (scan-badge "5"))
-   (with-award 2 (draw-sprite "collectibles.png" "Collectible"))
-   (with-award 0 export-from-piskel)
-   (with-award 0 open-file)
-   (with-award 3 (replace-sheet "http://bit.ly/2FTnKD7"))
-   (with-award 1  test-game)
-   (choose "any"
-           (list
-            (with-award 0 (import-to-piskel "Collectible"))
-            (with-award 3 (redesign-sprite "http://bit.ly/2It8CdW"))
-            (with-award 1 (change-player-position "http://bit.ly/2tTaFoi"))
-            (with-award 1 (change-starting-tile))
-            ;(with-award 1 (add-more-collectibles "https://bit.ly/2G9sIwr"))
-            ))
-   ))
 
-;Animate your Collectible
-(define day3-2dgame
-  (list
-   ;(with-award 1 (scan-badge "6"))
-   (with-award 0 (import-to-piskel "Collectible")) ;1. Import Collectible
-   (with-award 3 (animate "Collectible")) ;2. Duplicate and Edit Collectible -- change color/bounce/sparkle  (Video)
-   (with-award 1 export-sprite-sheet) ;3. Export a Sprite Sheet (set rows and columns)  (Video)
-   (with-award 0 open-file)
-   (with-award 1 import-sprite-sheet) ;5. Insert Sprite Sheet - Change rows and columns to match sprite sheet (Video)
-   (with-award 1  test-game)
-   ;(with-award 1 redesign-sprite-sheet)
-   (choose "any"
-           (list
-            (with-award 3 (animate "Character")) ;7. BONUS -- Animate the main character
-            (with-award 0 export-sprite-sheet)
-            (with-award 1 import-sprite-sheet)
-            ;(with-award 2 (animate-more "Character"))
-            ;(with-award 2 (animate-more "Background"))
-            ))
-   ))
 
-;Change Dialog, Add Dialog, Change NPC Mode / Customize your npc
-(define day4-2dgame
-  (list
-   (with-award 0 open-file)
-   (with-award 2 change-player-dialog)
-   (with-award 2 change-npc-dialog)
-   (with-award 2 add-new-dialog)
-   (with-award 1 (make-npc "wander"))
-   (with-award 1 (make-npc "still"))
-   (choose "any"
-           (list
-            (with-award 1 (make-npc "follow"))
-            (with-award 1 change-npc-speed)
-            (with-award 2 draw-and-add-npc)))))
 
 (define (shrink i)
   (reusable-material
    (scale i 0.5)))
-
-(define (quest1)
-  (map shrink
-       (make-picts "red" "Q1-" day1-2dgame (settings (bg (local-bitmap "bg-arcade.png")) PACMAN PACMAN-BONUS PACMAN-BONUS))))
-
-(define (quest2)
-  (map shrink
-       (make-picts "red" "Q2-" day2-2dgame (settings (bg (local-bitmap "bg-arcade.png")) MARIO MARIO-BONUS MARIO-BONUS))))
-
-(define (quest3)
-  (map shrink
-       (make-picts "red" "Q3-" day3-2dgame (settings (bg (local-bitmap "bg-arcade.png")) G-MUSH G-MUSH-BONUS G-MUSH-BONUS))))
-
-(define (quest4)
-  (map shrink
-       (make-picts "red" "Q4-" day4-2dgame (settings (bg (local-bitmap "bg-arcade.png")) STAR STAR-BONUS STAR-BONUS))))
-
-(define (quest5)
-  (map shrink
-       (make-picts "red" "Q5-" day4-2dgame (settings (bg (local-bitmap "bg-arcade.png")) STAR STAR-BONUS STAR-BONUS))))
-
-
-(provide quests)
-(define (quests)
-  (list quest1
-        quest2
-        quest3
-        quest4
-        quest5))
-
-
 

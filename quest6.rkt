@@ -273,15 +273,20 @@
 
 ;some of these are awfully wide to be in the vertical interactions window.
 ;maybe make the hints optional to go side or bottom?
-(define-image-file builder-code       images (add-builder-code "House"))
+(define-image-file builder-code         images (add-builder-code "House")) ;We should change this.  Keeping it for now.
+(define-image-file house-builder-code   images (add-builder-code "House")) ;replace above with this when old cards are out of circulation
+
+
+
 (define-image-file npc-builder-code   images (add-builder-code "NPC"))
 (define-image-file house-code         images (code-first-house-code))
 (define-image-file delete-builder     images (remove-builder-code))
 (define-image-file map-code           images (mini-map-code))
 (define-image-file random-npc-code    images (npc-code))
 
-(define (add-builder t)
-  (define img
+;need to refacotr, pull to common
+#;(define (add-builder t img)
+  #;(define img
     (if (string=? (string-downcase t) "npc")
         npc-builder-code
         builder-code))
@@ -293,21 +298,16 @@
                          (launcher-img img)
                          ))
 
-(define (try-builder t)
-  (define extra-instructions
-    (if (string=? (string-downcase t) "house")
-        (list (instruction-basic "Go back to the code and change:")
-              (instruction-basic (text-with-image (codify "wood-house") " to " (codify "stone-house"))))
-        '()))
+(define try-house-builder
   (activity-instructions "Try the Builder"
                          '()
-                         (append
-                          (list (instruction-basic "Run your game.")
-                                (instruction-basic (~a "Use the z key to create a " (string-downcase t)))
-                                (instruction-basic (~a "Use the x key to place the " (string-downcase t))))
-                          extra-instructions
-                          (list (instruction-goal "your builder working in game!")))
-                         (p:scale (p:bitmap "images/q6-houses.png") .3)))
+                         (list (instruction-basic "Run your game.")
+                               (instruction-basic "Use the z key to create a house.")
+                               (instruction-basic "Use the x key to place the house." )
+                               (instruction-basic "Go back to the code and change:")
+                               (instruction-basic (text-with-image (codify "wood-house") " to " (codify "stone-house")))
+                               (instruction-goal "your builder working in game!"))
+                         (p:scale (local-bitmap "q6-houses.png") .3)))
 
 (define use-worksheet
   (activity-instructions "Create Your Village"
@@ -372,9 +372,9 @@
 (define day6-2dgame
   (list
    ;card 1 -- add builder
-   (with-award 1 (add-builder "House"))
+   ;(with-award 1 (add-builder "House"))
    ;card 2 -- try builder (try with other house)
-   (with-award 0 (try-builder "House"))
+   (with-award 0 try-house-builder)
    ;card 3 -- worksheet
    (with-award 2 use-worksheet)
    ;4 -- put 1st in start-game
@@ -389,7 +389,7 @@
             ;7 -- add mini map
             ;(with-award 1 mini-map)
             ;7 -- add npc builder
-            (with-award 1 (add-builder "NPC"))
+            ;(with-award 1 (add-builder "NPC"))
             ;8 -- use builder to note loc of new npc 
             (with-award 0 (use-builder "NPC"))
             ;9 -- add to start-game

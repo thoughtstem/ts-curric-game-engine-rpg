@@ -40,34 +40,30 @@
 
 (define (house-placer-worksheet-1)
   (define house-type (code-blank))
-  (define p-x  (code-blank))
-  (define p-y  (code-blank))
-  (define bg-n (code-blank))
+  (define p-x  (code-blank 50))
+  (define p-y  (code-blank 50))
+  (define bg-n (code-blank 50))
   
   (define code 
-    (p:code (#,house-type
-             (posn #,p-x
-                   #,p-y)
-              #:components
-              (active-on-bg #,bg-n))))
+    (p:code (#,house-type (posn #,p-x #,p-y)
+                          #:tile #,bg-n)))
 
    (code+hints code
                (list house-type
                      (hint
                       (p:vl-append 10
-                                   (p:text "house type, e.g.")
+                                   (p:text "house type:")
+                                   (p:hc-append (p:code wood-house)
+                                                (p:text ", ")
+                                                (p:code brick-house))
                                    (p:hc-append 10
-                                    (p:scale house-img 0.2)
-                                    (p:code wood-house))
-                                   (p:text "or")
-                                   (p:hc-append 10
-                                    (p:scale stone-house-img 0.2)
-                                    (p:code stone-house))  )))
+                                     (p:text "or")
+                                     (p:code stone-house)))))
                (list p-x p-y
                      (hint
                       (p:hb-append 10
-                                   (p:text "location, e.g.")
-                                   (p:code 100))))
+                                   (p:text "X and Y coordinates, ex.")
+                                   (p:code 100 200))))
                (list bg-n
                      (hint 
                       (p:hb-append 10
@@ -77,65 +73,34 @@
 
 (define (house-placer-worksheet-2)
   (define house-type (code-blank))
-  (define p  (code-blank))
-  (define p2 (code-blank))
-  (define b  (code-blank 200))
+  (define p  (code-blank 50))
+  (define p2 (code-blank 50))
+  (define b  (code-blank 100))
+  (define b2 (code-blank 50))
   
   (define code 
-    (p:code (#,house-type
-             (posn #,p
-                   #,p2)
-             #:components
-             (#,b))))
+    (p:code (#,house-type (posn #,p #,p2)
+                          #: #,b  #,b2)))
 
-  code
-  
-  ;no hints needed on the same page
-   #;(code+hints code
-               (list house-type
-                     (hint "house type"))
-               
-               (list p
-                     (hint
-                      (p:hb-append 10
-                                   (p:text "location, e.g.")
-                                   (p:code (posn 100 200)))))
-               
-               (list b
-                     (hint 
-                      (p:hb-append 10
-                                   (p:text "active-on-bg component, e.g.")
-                                   (p:code (active-on-bg 3)))))))
+  code)
 
 (define (house-placer-worksheet-3)
   ;(define full (code-blank 170 150))
   (define house-type (code-blank))
-  (define p  (code-blank 150))
-  (define p2 (code-blank))
-  (define c  (code-blank))
-  (define b  (code-blank 200))
+  (define p  (code-blank 50))
+  (define p2 (code-blank 50))
+  (define p3 (code-blank 50))
+  (define c  (code-blank 100))
+  (define b  (code-blank 50))
   
   (define code 
-    (p:code (#,house-type
-             (#,p
-                     #,p2)
-             #: #,c
-             (#,b))))
+    (p:code (#,house-type (#,p #,p2 #,p3)
+                          #: #,c #,b)))
 
-  code
-
-   #;(code+hints code
-               (list full
-                     (hint
-                      (p:vl-append 10
-                                   (p:text "All the code for your house here!")
-                                   #;(p:code (wood-house
-                                            (posn 200 50)
-                                            #:components
-                                            (active-on-bg 4))))))))
+  code)
 
 (define (house-placer-worksheet-4)
-  (define full (code-blank 170 150))
+  (define full (code-blank 300 100))
   
   (define code 
     (p:code #,full))
@@ -155,46 +120,39 @@
                               (p:scale (p:text "It Makes a Village!") 2)
                               (p:scale house-img 0.75))
      
-                 (p:hc-append
+                 ;(p:hc-append
                   (pretty-frame
                    (p:vc-append
                     (p:text "First house")
                     (house-placer-worksheet-1)))
                   (pretty-frame
                    (p:vc-append
-                    44
+                    30
                     (p:text "Second house")
                     (house-placer-worksheet-2)
-                    (p:ghost (p:rectangle 1 1)))))
+                    #;(p:ghost (p:rectangle 1 1))))
                              
-                 (p:hc-append
+                 ;(p:hc-append
                   (pretty-frame
                    (p:vc-append
-                    35
+                    30
                     (p:text "Third house")
                     (house-placer-worksheet-3)))
                   (pretty-frame
                    (p:vc-append
-                    11
+                    30
                     (p:text "Fourth house")
-                    (house-placer-worksheet-4))))))
+                    (house-placer-worksheet-4)))))
   (p:scale (p:inset sheet 20) 2))
 
-
-#;(p:vl-append 20
-               (p:text "Fifth house")
-               (house-placer-worksheet-4)
-               (p:text "Sixth house")
-               (house-placer-worksheet-4))
 
 (define (add-builder-code t)
   (define type
     (cond [(string=? (string-downcase t) "house") (p:code wood-house)]
-          [(string=? (string-downcase t) "npc")   (p:code npc1-entity)]
-          [else (p:code ghost)]))
+          [(string=? (string-downcase t) "npc")   (p:code random-npc)]
+          [else (p:code stone-house)]))
   (define b (p:frame (p:code
-                      (builder (posn 200 200)
-                               (#,type))) #:color "red"))
+                      (builder (posn 200 200) #,type)) #:color "red"))
   
   (define the-code (p:code
                     (start-game (instructions-entity)
@@ -214,50 +172,43 @@
 (define (code-first-house-code)
   (define w (p:frame (p:code
                       (wood-house (posn 325 120)
-                                  #:components
-                                  (active-on-bg 0))) #:color "red"))
+                                  #:tile 1)) #:color "red"))
   
   (define the-code (p:code
                     (start-game (instructions-entity)
-                                (builder (posn 200 200)
-                                         (wood-house))
+                                (builder (posn 200 200) wood-house)
                                 #,w
                                 (item-entity (posn 200 200))
                                 (npc1-entity)
                                 (player-entity)
                                 (bg-entity))))
 
-  (p:scale (code+hints the-code
-                       (list w
-                             (hint
-                              (p:vc-append
-                               (p:text "New Code!")
-                               (p:text "Exactly as written on")
-                               (p:text "your worksheet"))))) 1.5))
+  (code+hints the-code
+              (list w
+                    (hint
+                     (p:vc-append
+                      (p:text "New Code!")
+                      (p:text "Exactly as written on")
+                      (p:text "your worksheet"))))))
 
 
 (define (remove-builder-code)
 
   (define b (p:frame (p:code
-                      (builder (posn 200 200)
-                               (wood-house))) #:color "red"))
+                      (builder (posn 200 200) wood-house)) #:color "red"))
   (define xb (x-out b))
   
   (define the-code (p:code
                     (start-game (instructions-entity)
                                 #,xb
                                 (wood-house (posn 325 120)
-                                            #:components
-                                            (active-on-bg 0))
-                                (wood-house (posn 80 100)
-                                            #:components
-                                            (active-on-bg 1))
+                                            #:tile 1)
+                                (wood-house (posn 80 10)
+                                            #:tile 1)
                                 (wood-house (posn 300 200)
-                                            #:components
-                                            (active-on-bg 0))
-                                (wood-house (posn 100 180)
-                                            #:components
-                                            (active-on-bg 1))
+                                            #:tile 0)
+                                (wood-house (posn 50 180)
+                                            #:tile 0)
                                 (item-entity (posn 200 200))
                                 (npc1-entity)
                                 (player-entity)
@@ -290,6 +241,35 @@
                       (p:text "components of your bg-entity.")
                       (p:text "Mind the parentheses!"))))))
 
+(define (npc-code)
+
+  (define k (p:frame (p:code
+                      #:name "Mario"
+                      #:mode 'pace) #:color "red"))
+
+  (define r (p:frame (p:code (random-npc (posn 100 100)
+                                          #:tile 5
+                                          #,k)) #:color "red"))
+  
+  (define the-code (p:code
+                    (start-game (instructions-entity)
+                                (wood-house (posn 100 300)
+                                            #:tile 5)
+                                (builder (posn 200 200) random-npc)
+                                ;need a way to frame this larger bit that include the code hint portion
+                                #,r
+                                (item-entity (posn 200 200))
+                                (npc1-entity)
+                                (player-entity)
+                                (bg-entity))))
+
+  (code+hints the-code
+              (list k
+                    (hint
+                     (p:vc-append
+                      (p:text "Optional keyword arguments")
+                      (p:text "for name and movement mode."))))))
+
 
 ;some of these are awfully wide to be in the vertical interactions window.
 ;maybe make the hints optional to go side or bottom?
@@ -298,6 +278,7 @@
 (define-image-file house-code         images (code-first-house-code))
 (define-image-file delete-builder     images (remove-builder-code))
 (define-image-file map-code           images (mini-map-code))
+(define-image-file random-npc-code    images (npc-code))
 
 (define (add-builder t)
   (define img
@@ -306,7 +287,7 @@
         builder-code))
   (activity-instructions (~a "Add " (string-titlecase t) " Builder Code")
                          '()
-                         (list (instruction-basic "<---Type in the interactions window to see the code.")
+                         (list (instruction-basic "Use the launcher to see the code.")
                                (instruction-basic "Add the new code to the start-game function.")
                                (instruction-goal "the new code in your file."))
                          (launcher-img img)
@@ -331,17 +312,17 @@
 (define use-worksheet
   (activity-instructions "Create Your Village"
                          '()
-                         (list (instruction-basic "Place a house where you want it permanently.")
-                               (instruction-basic "Use the information printed out in the interactions window to fill out the First House on your worksheet")
-                               (instruction-basic "Place and note the locations of three additional houses.")
+                         (list (instruction-basic "Place a house where you want it.")
+                               (instruction-basic "Note the posn and tile number on your worksheet for the First House.")
+                               (instruction-basic "Place and note the locations of three more houses.")
                                (instruction-goal "your completed worksheet."))
-                         (image-qr "https://bit.ly/2yKlpVn")))
+                         (p:frame (p:scale (it-makes-a-village-worksheet) .2))))
 
 (define code-first-house
   (activity-instructions "Code your First House"
                          '()
-                         (list (instruction-basic "<--- Type in the interactions window to see example code.")
-                               (instruction-basic "Add the code for your First House on your worksheet to start-game.")
+                         (list (instruction-basic "Add the code for your First House on your worksheet to start-game.")
+                               (instruction-basic "Use the launcher to see sample code.")
                                (instruction-basic "Test your game!")
                                (instruction-goal "your house code in start-game."))
                          (launcher-img house-code)))
@@ -357,29 +338,36 @@
 (define remove-builder
   (activity-instructions "Remove Builder Code"
                          '()
-                         (list (instruction-basic "<--- Type in the interations window to see example code.")
-                               (instruction-basic "Delete the builder code from start-game.")
+                         (list (instruction-basic "Delete the builder code from start-game.")
+                               (instruction-basic "Use the launcher to see sample code.")
                                (instruction-goal "your updated start-game code."))
                          (launcher-img delete-builder)))
 
 (define mini-map
   (activity-instructions "Add Mini Map!"
                          '()
-                         (list (instruction-basic "Scan QR to see code.")
+                         (list (instruction-basic "Use the launcher to see the code.")
                                (instruction-basic (text-with-image "Add the line of code to the " (codify "bg-entity")))
                                (instruction-basic "Test your game! Which key on your keyboard will open the mini map? Close it?")
                                (instruction-goal "your mini-map in game!"))
                          (launcher-img map-code)))
 
 (define (use-builder t)
-  (activity-instructions (~a "Place and Code Your " (string-titlecase t))
+  (activity-instructions (~a "Place Your " (string-titlecase t))
                          '()
                          (list (instruction-basic (~a "Use the builder to place the " (string-downcase t) "."))
-                               (instruction-basic (text-with-image "Note the " (codify "posn") " and " (codify "active-on-bg") "."))
-                               (instruction-basic "Remember: that information will appear in the interactions window!")
-                               (instruction-basic (~a "Add the code for your " (string-downcase t) " to start-game."))
-                               (instruction-goal "all your new code in start-game."))
+                               (instruction-basic (text-with-image "Note the " (codify "posn") " and tile."))
+                               (instruction-basic "Hint: You can write it on the back of your worksheet!")
+                               (instruction-goal (~a "your position notes for your " (string-downcase t) ".")))
                          (p:scale (p:bitmap "images/q6-npcs-everywhere.png") .4)))
+
+(define (code-from-builder)
+  (activity-instructions "Code Your NPCs"
+                         '()
+                         (list (instruction-basic "Use the launcher to see sample code.")
+                               (instruction-basic "Add the code for your NPCs in start-game.")
+                               (instruction-goal "the new code in start-game."))
+                         (launcher-img random-npc-code)))
 
 (define day6-2dgame
   (list
@@ -399,11 +387,13 @@
    (choose "any"
            (list
             ;7 -- add mini map
-            (with-award 1 mini-map)
-            ;8 -- add npc builder
+            ;(with-award 1 mini-map)
+            ;7 -- add npc builder
             (with-award 1 (add-builder "NPC"))
-            ;9 -- use builder to note loc of new npc and add to start-game
-            (with-award 3 (use-builder "NPC"))
+            ;8 -- use builder to note loc of new npc 
+            (with-award 0 (use-builder "NPC"))
+            ;9 -- add to start-game
+            (with-award 2 (code-from-builder))
             ))))
 
 (define (quest-cards)
@@ -413,6 +403,7 @@
 
 (define (quest6)
   (append (quest-cards)
-          (it-makes-a-village-worksheet)))
+          (list (it-makes-a-village-worksheet))))
 
-
+(module+ test
+  (quest6))
