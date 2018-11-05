@@ -1,6 +1,11 @@
 #lang slideshow
 
+
+
 (require ts-curric-common)
+
+(require/provide-common)
+
 (define-quests
   quest1
   quest2
@@ -9,4 +14,5 @@
   quest5
   quest6
   quest8)
+
 
