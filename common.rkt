@@ -4,12 +4,12 @@
          open-racket-only
          load-code
          load-code-more
-         google-form-q1
+         google-form
          draw-sprite-style
          export-from-piskel
          reload-fave
          save-as
-         replace-sheet-q1
+         replace-sheet
          local-bitmap
          draw-sprite
          open-file
@@ -168,17 +168,14 @@
                                (instruction-goal  "your game window running."))
                          (scale-to-fit (local-bitmap imgStr) 250 250 #:mode 'preserve)))
 
-(define-webpage game-review
-    this-curriculum
-    "http://bit.ly/2NizLFU")
 
-(define google-form-q1
+(define (google-form webpage)
   (activity-instructions "Open the Game Review"
                          '()
                          (list (instruction-basic "Scan the card to open the Game Review.")
                                (instruction-basic "Answer the questions about the demo games.")
                                (instruction-goal "your Google Form submitted."))
-                         (launcher-img game-review)))
+                         (launcher-img webpage)))
 
 ;(define open-piskel
 ;  (activity-instructions "Open Piskel"
@@ -305,11 +302,7 @@
                           (instruction-goal "your sprite in the code."))
                         (video-qr url)))
 
-(define-webpage replace-the-sprite
-  this-curriculum
-  "http://bit.ly/2FTnKD7")
-
-(define replace-sheet-q1
+(define (replace-sheet webpage)
 
   
   (activity-instructions "Replace Your Sprite"
@@ -320,7 +313,7 @@
                           (instruction-basic "Find your image and select 'Open'")
                           (instruction-basic "Change rows, columns, and row-number to 1")
                           (instruction-goal "your sprite in the code."))
-                        (launcher-img replace-the-sprite)))
+                        (launcher-img webpage)))
 
 
 (define-webpage magic-load
