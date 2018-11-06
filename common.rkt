@@ -4,12 +4,12 @@
          open-racket-only
          load-code
          load-code-more
-         google-form
+         google-form-q1
          draw-sprite-style
          export-from-piskel
          reload-fave
          save-as
-         replace-sheet
+         replace-sheet-q1
          local-bitmap
          draw-sprite
          open-file
@@ -63,6 +63,7 @@
 
 (require racket/runtime-path)
 (define-runtime-path images "images")
+(define-runtime-path this-curriculum ".")
 
 (define (local-avatar s)
   (avatar (~a (path->string images) "/" s)))
@@ -113,12 +114,16 @@
                           (instruction-folder "Desktop/SAVE_MY_WORK/"))
                          (video-qr "http://bit.ly/2CoFWPL")))
 
+(define-webpage open-racket-vid
+  this-curriculum
+  "http://bit.ly/2HV5yHn")
+
 (define open-racket-only
-  (activity-instructions "Open DrRacket"
+  (activity-instructions "DrRacket Basics"
                          '()
-                         (list (instruction-open "DrRacket")
+                         (list (instruction-basic "Load the video to learn the simple tools in DrRacket.")
                                (instruction-goal "the blank file in DrRacket."))
-                         (video-qr "http://bit.ly/2HV5yHn")))
+                         (launcher-img open-racket-vid)))
 
 (define (open-racket action)
   (activity-instructions (cond
@@ -163,13 +168,17 @@
                                (instruction-goal  "your game window running."))
                          (scale-to-fit (local-bitmap imgStr) 250 250 #:mode 'preserve)))
 
-(define (google-form url)
+(define-webpage game-review
+    this-curriculum
+    "http://bit.ly/2NizLFU")
+
+(define google-form-q1
   (activity-instructions "Open the Game Review"
                          '()
                          (list (instruction-basic "Scan the card to open the Game Review.")
                                (instruction-basic "Answer the questions about the demo games.")
                                (instruction-goal "your Google Form submitted."))
-                         (code-qr url)))
+                         (launcher-img game-review)))
 
 ;(define open-piskel
 ;  (activity-instructions "Open Piskel"
@@ -195,13 +204,17 @@
                                (instruction-goal "your completed texture."))
                          (scale (local-bitmap image) 2.0)))
 
+(define-webpage piskel-export
+  this-curriculum
+  "http://bit.ly/2Ark1Wv")
+
 (define export-from-piskel
   (activity-instructions "Export the Texture"
                          '()
                          (list (instruction-basic "Export from Piskel to SAVE_MY_WORK.")
                                (instruction-basic "Make sure it ends in '.png' and name it whatever you want.")
                                (instruction-goal "your exported file."))
-                         (video-qr "http://bit.ly/2Ark1Wv")))
+                         (launcher-img piskel-export)))
 
 (define (import-to-piskel sprite)
   (activity-instructions (++ "Import Your " (string-titlecase sprite))
@@ -292,7 +305,13 @@
                           (instruction-goal "your sprite in the code."))
                         (video-qr url)))
 
-(define (replace-sheet url)
+(define-webpage replace-the-sprite
+  this-curriculum
+  "http://bit.ly/2FTnKD7")
+
+(define replace-sheet-q1
+
+  
   (activity-instructions "Replace Your Sprite"
                          '()
                          (list
@@ -301,7 +320,12 @@
                           (instruction-basic "Find your image and select 'Open'")
                           (instruction-basic "Change rows, columns, and row-number to 1")
                           (instruction-goal "your sprite in the code."))
-                        (video-qr url)))
+                        (launcher-img replace-the-sprite)))
+
+
+(define-webpage magic-load
+  this-curriculum
+  "http://bit.ly/2Q2yKAh")
 
 (define (load-code demo-name)
   (activity-instructions "Load the Starter Code"
@@ -311,7 +335,7 @@
                                (instruction-basic "Click the Load button")
                                (instruction-basic "Run the code.")
                                (instruction-goal  "The demo code running in DrRacket"))
-                         (video-qr "http://bit.ly/2Q2yKAh")))
+                         (launcher-img magic-load)))
 
 (define (load-code-more endGame imgStr)
   (activity-instructions (++ "Test Games 2 Through " endGame)
@@ -328,7 +352,11 @@
                          '()
                          (list (instruction-basic "Reload the game with your favorite style.")
                                (instruction-goal  "your favorite game."))
-                         (video-qr "http://bit.ly/2Q2yKAh")))
+                         (launcher-img magic-load)))
+
+(define-webpage save-file-as
+  this-curriculum
+  "http://bit.ly/2ImsLCl")
 
 (define save-as
   (activity-instructions "Save the File"
@@ -336,7 +364,7 @@
                          (list (instruction-basic "Click 'File' and  'Save Definitions As'")
                                (instruction-basic "Rename the file, make sure to keep the '.rkt' at the end!")
                                (instruction-goal  "your renamed and saved file."))
-                         (video-qr "http://bit.ly/2ImsLCl")))
+                         (launcher-img save-file-as)))
 
 (define (change-position url)
   (activity-instructions "Change the Start Position"
