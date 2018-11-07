@@ -38,7 +38,7 @@
                                   "You must be new around here."
                                   "Make sure to explore the area.")
                             (list "Nope. I'm just out for a walk."
-                                  "I did drop some coins though.\nPlease keep an eye out for them.")
+                                  "I did drop some coins though.")
                             #,npc-dialog
                             code:blank
                             ))))
@@ -257,14 +257,14 @@
                     (hint (p:text "TYPE NEW CODE HERE")))))
 
 ; === DEFINE IMAGE FILES ===
-(define-image-file quest-giver-code    images (p:scale (give-quest-code-img) 1.5))
-(define-image-file paste-quest-dialog  images (p:scale (paste-quest-dialog-img) 1.5))
-(define-image-file npc-quest-code      images (p:scale (npc-quest-img) 1.5))
-(define-image-file modify-quest-dialog images (p:scale (modify-quest-dialog-img) 1.5))
-(define-image-file paste-new-response  images (p:scale (paste-new-response-img) 1.5))
-(define-image-file npc-response        images (p:scale (npc-response-img) 1.5))
-(define-image-file score-entity        images (p:scale (score-entity-img) 1.5))
-(define-image-file quest-reward        images (p:scale (quest-reward-img) 1.5))
+(define-image-file quest-giver-code    images (p:scale (give-quest-code-img) 1))
+(define-image-file paste-quest-dialog  images (p:scale (paste-quest-dialog-img) 1))
+(define-image-file npc-quest-code      images (p:scale (npc-quest-img) 1))
+(define-image-file modify-quest-dialog images (p:scale (modify-quest-dialog-img) 1))
+(define-image-file paste-new-response  images (p:scale (paste-new-response-img) 1))
+(define-image-file npc-response        images (p:scale (npc-response-img) 1))
+(define-image-file score-entity        images (p:scale (score-entity-img) 1))
+(define-image-file quest-reward        images (p:scale (quest-reward-img) 1))
 
 ;(with-award 1 (add-quest-giver))
 (define (add-quest-giver)
