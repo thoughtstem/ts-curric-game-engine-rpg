@@ -190,10 +190,17 @@
 (define repeat-1-6
   (activity-instructions "Code More Elements!"
                          '()
-                         (list (instruction-basic "Add TODO")
-                               (instruction-basic "Add more ")
+                         (list (instruction-basic "Add more elements to your game.")
+                               (instruction-basic "Repeat cards 1-6 with a new element.")
+                               (instruction-basic "(Yes, you get $$ each time.)")
                                (instruction-goal "your game with custom entities!"))
-                         (p:circle 20)))
+                         (p:vc-append
+                          (p:hc-append
+                           (draw-entity (round-tree #:hue 250))
+                           (draw-entity (round-tree #:hue 180)))
+                          (p:hc-append
+                           (draw-entity (cat #:hue 250 #:size 3))
+                           (draw-entity (cat #:hue 180 #:size 3))))))
 
 
 (define day8-2dgame
