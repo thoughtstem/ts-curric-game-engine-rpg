@@ -29,6 +29,8 @@
          draw-and-add-npc
          add-builder
          remove-builder
+
+         replace-sprite-video
          
          MARIO        
          MARIO-BONUS  
@@ -114,16 +116,20 @@
                           (instruction-folder "Desktop/SAVE_MY_WORK/"))
                          (video-qr "http://bit.ly/2CoFWPL")))
 
-(define-webpage open-racket-vid
+(define-webpage racket-basics-video
   this-curriculum
   "http://bit.ly/2HV5yHn")
+
+(define-webpage replace-sprite-video
+  this-curriculum
+  "http://bit.ly/2FTnKD7")
 
 (define open-racket-only
   (activity-instructions "DrRacket Basics"
                          '()
                          (list (instruction-basic "Load the video to learn the simple tools in DrRacket.")
                                (instruction-goal "the blank file in DrRacket."))
-                         (launcher-img open-racket-vid)))
+                         (launcher-img racket-basics-video)))
 
 (define (open-racket action)
   (activity-instructions (cond
@@ -138,13 +144,17 @@
                                (instruction-goal "your racket file opened."))
                          (video-qr "http://bit.ly/2HV5yHn")))
 
+(define-webpage open-file-video
+  this-curriculum
+  "http://bit.ly/2IvXVHJ")
+
 (define open-file
   (activity-instructions "Open Your File"
                          '()
                          (list (instruction-basic "Open your SAVE_MY_WORK folder")
                                (instruction-basic "Double-click your .rkt file")
                                (instruction-goal "your file open in DrRacket."))
-                         (video-qr "http://bit.ly/2IvXVHJ")))
+                         (launcher-img open-file-video)))
 
 (define (demo-code action version goal)
   (activity-instructions "Test the Game"
@@ -282,7 +292,7 @@
                           (instruction-goal "your new changes running in game."))
                         (search-qr url)))
 
-(define (redesign-sprite url)
+(define (redesign-sprite webpage)
   (activity-instructions "Re-design Your Sprite"
                          '()
                          (list
@@ -290,7 +300,7 @@
                           (instruction-basic "Insert it in your code.")
                           (instruction-basic "Scale down the image if it is too big.")
                           (instruction-goal "your new changes running in game."))
-                        (video-qr url)))
+                        (launcher-img webpage)))
 
 (define (replace-sprite url)
   (activity-instructions "Replace Your Sprite"
@@ -369,7 +379,7 @@
                           (instruction-goal "your collectible starting far away in game."))
                         (video-qr url)))
 
-(define (change-player-position url)
+(define (change-player-position)
   (activity-instructions "Change the Player Position"
                          '()
                          (list                        

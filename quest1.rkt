@@ -14,10 +14,6 @@
     this-curriculum
     "http://bit.ly/2NizLFU")
 
-(define-webpage replace-sprite
-  this-curriculum
-  "http://bit.ly/2FTnKD7")
-
 (define day1-2dgame
   (list
    (with-award 0 open-racket-only)
@@ -30,7 +26,7 @@
            (list
             (with-award 0 reload-fave)
             (with-award 1 save-as)
-            (with-award 1 (replace-sheet replace-sprite))
+            (with-award 1 (replace-sheet replace-sprite-video))
             ))))
 
 
