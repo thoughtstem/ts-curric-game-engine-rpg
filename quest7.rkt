@@ -70,7 +70,7 @@
                     ))
   (code+hints the-code
               (list new-code
-                    (hint (p:text "PASTE NEW CODE HERE")))))
+                    (hint (p:text "PASTED CODE")))))
 
 (define (npc-quest-img)
   (define new-code (p:frame (p:code
@@ -170,7 +170,7 @@
                     ))
   (code+hints the-code
               (list new-code
-                    (hint (p:text "PASTE NEW CODE HERE")))))
+                    (hint (p:text "PASTED CODE")))))
 
 (define (npc-response-img)
   (define new-code (p:frame (p:code
@@ -231,9 +231,9 @@
   
   (code+hints the-code
               (list new-code
-                    (hint (p:text "PASTE NEW CODE HERE")))
+                    (hint (p:text "PASTED CODE")))
               (list new-code2
-                    (hint (p:text "TYPE NEW CODE HERE")))))
+                    (hint (p:text "TYPE THIS CODE")))))
 
 (define (quest-reward-img)
   (define new-code (p:frame (p:code
@@ -326,10 +326,12 @@
 
 ;(with-award 1 add-score-entity)
 (define (add-response-npc)
-  (activity-instructions "Add Reponse to NPC"
+  (activity-instructions "Add New Response to NPC"
                          '()
-                         (list (instruction-basic "Launch the image to see where to type the code")
-                               (instruction-goal "your new code in your project"))
+                         (list (instruction-basic "Go back to the npc quest component.")
+                               (instruction-basic "Use the launcher and type the new code.")
+                               (instruction-basic "Test the game again and complete the quest.")
+                               (instruction-goal "new npc responses after completing the quest."))
                          (launcher-img npc-response)))
 
 ;(with-award 1 add-score-entity)
