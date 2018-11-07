@@ -359,15 +359,15 @@
   (list
    (with-award 1 (add-quest-giver))
    (with-award 1 (add-quest-complete-dialog))
-   (with-award 1 (add-npc-quest-component))
+   (with-award 2 (add-npc-quest-component))
    (with-award 1 (test-quest-system))
-   (with-award 1 (change-quest-dialog))
-   (with-award 0 (add-new-response))
+   (with-award 2 (change-quest-dialog))
+   (with-award 1 (add-new-response))
    (with-award 1 (add-response-npc))
    (choose "any"
            (list
             (with-award 1 (add-score-entity))
-            (with-award 1 (add-quest-reward))
+            (with-award 2 (add-quest-reward))
             ))
    ))
 
