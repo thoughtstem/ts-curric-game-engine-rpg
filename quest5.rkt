@@ -118,16 +118,5 @@
   (map shrink
        (quest5-full)))
 
-; ==== TEST 3x3 PNG for Printing ======
-; includes inset and frame
-(define large-3x3-png
-  (cards->pages (map (curryr frame #:line-width 2)
-                   (map (curryr inset 20)
-                        (quest5-full)))))
-
-;(save-out-materials "tsdg-quest5" (quest5-full))
-
-;(map slide (make-picts "red" "Q5-" day5-2dgame (settings (bg (local-bitmap "bg-arcade.png")) R-MUSH R-MUSH-BONUS R-MUSH-BONUS)))
-
 
 
