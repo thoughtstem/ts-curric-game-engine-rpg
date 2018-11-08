@@ -1,5 +1,7 @@
 #lang slideshow
 
+
+
 (require ts-curric-common)
 
 (require/provide-common)
@@ -11,7 +13,6 @@
   quest4
   quest5
   quest6
-  quest7
   quest8)
 
 

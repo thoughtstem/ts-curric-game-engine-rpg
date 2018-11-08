@@ -29,8 +29,6 @@
          draw-and-add-npc
          add-builder
          remove-builder
-
-         replace-sprite-video
          
          MARIO        
          MARIO-BONUS  
@@ -65,7 +63,6 @@
 
 (require racket/runtime-path)
 (define-runtime-path images "images")
-(define-runtime-path this-curriculum ".")
 
 (define (local-avatar s)
   (avatar (~a (path->string images) "/" s)))
@@ -116,20 +113,12 @@
                           (instruction-folder "Desktop/SAVE_MY_WORK/"))
                          (video-qr "http://bit.ly/2CoFWPL")))
 
-(define-webpage racket-basics-video
-  this-curriculum
-  "http://bit.ly/2HV5yHn")
-
-(define-webpage replace-sprite-video
-  this-curriculum
-  "http://bit.ly/2FTnKD7")
-
 (define open-racket-only
-  (activity-instructions "DrRacket Basics"
+  (activity-instructions "Open DrRacket"
                          '()
-                         (list (instruction-basic "Load the video to learn the simple tools in DrRacket.")
+                         (list (instruction-open "DrRacket")
                                (instruction-goal "the blank file in DrRacket."))
-                         (launcher-img racket-basics-video)))
+                         (video-qr "http://bit.ly/2HV5yHn")))
 
 (define (open-racket action)
   (activity-instructions (cond
@@ -144,17 +133,13 @@
                                (instruction-goal "your racket file opened."))
                          (video-qr "http://bit.ly/2HV5yHn")))
 
-(define-webpage open-file-video
-  this-curriculum
-  "http://bit.ly/2IvXVHJ")
-
 (define open-file
   (activity-instructions "Open Your File"
                          '()
                          (list (instruction-basic "Open your SAVE_MY_WORK folder")
                                (instruction-basic "Double-click your .rkt file")
                                (instruction-goal "your file open in DrRacket."))
-                         (launcher-img open-file-video)))
+                         (video-qr "http://bit.ly/2IvXVHJ")))
 
 (define (demo-code action version goal)
   (activity-instructions "Test the Game"
@@ -178,14 +163,13 @@
                                (instruction-goal  "your game window running."))
                          (scale-to-fit (local-bitmap imgStr) 250 250 #:mode 'preserve)))
 
-
-(define (google-form webpage)
+(define (google-form url)
   (activity-instructions "Open the Game Review"
                          '()
                          (list (instruction-basic "Scan the card to open the Game Review.")
                                (instruction-basic "Answer the questions about the demo games.")
                                (instruction-goal "your Google Form submitted."))
-                         (launcher-img webpage)))
+                         (code-qr url)))
 
 ;(define open-piskel
 ;  (activity-instructions "Open Piskel"
@@ -211,17 +195,13 @@
                                (instruction-goal "your completed texture."))
                          (scale (local-bitmap image) 2.0)))
 
-(define-webpage piskel-export
-  this-curriculum
-  "http://bit.ly/2Ark1Wv")
-
 (define export-from-piskel
   (activity-instructions "Export the Texture"
                          '()
                          (list (instruction-basic "Export from Piskel to SAVE_MY_WORK.")
                                (instruction-basic "Make sure it ends in '.png' and name it whatever you want.")
                                (instruction-goal "your exported file."))
-                         (launcher-img piskel-export)))
+                         (video-qr "http://bit.ly/2Ark1Wv")))
 
 (define (import-to-piskel sprite)
   (activity-instructions (++ "Import Your " (string-titlecase sprite))
@@ -292,7 +272,7 @@
                           (instruction-goal "your new changes running in game."))
                         (search-qr url)))
 
-(define (redesign-sprite webpage)
+(define (redesign-sprite url)
   (activity-instructions "Re-design Your Sprite"
                          '()
                          (list
@@ -300,7 +280,7 @@
                           (instruction-basic "Insert it in your code.")
                           (instruction-basic "Scale down the image if it is too big.")
                           (instruction-goal "your new changes running in game."))
-                        (launcher-img webpage)))
+                        (video-qr url)))
 
 (define (replace-sprite url)
   (activity-instructions "Replace Your Sprite"
@@ -312,7 +292,7 @@
                           (instruction-goal "your sprite in the code."))
                         (video-qr url)))
 
-(define (replace-sheet webpage)
+(define (replace-sheet url)
   (activity-instructions "Replace Your Sprite"
                          '()
                          (list
@@ -321,12 +301,7 @@
                           (instruction-basic "Find your image and select 'Open'")
                           (instruction-basic "Change rows, columns, and row-number to 1")
                           (instruction-goal "your sprite in the code."))
-                        (launcher-img webpage)))
-
-
-(define-webpage magic-load
-  this-curriculum
-  "http://bit.ly/2Q2yKAh")
+                        (video-qr url)))
 
 (define (load-code demo-name)
   (activity-instructions "Load the Starter Code"
@@ -336,7 +311,7 @@
                                (instruction-basic "Click the Load button")
                                (instruction-basic "Run the code.")
                                (instruction-goal  "The demo code running in DrRacket"))
-                         (launcher-img magic-load)))
+                         (video-qr "http://bit.ly/2Q2yKAh")))
 
 (define (load-code-more endGame imgStr)
   (activity-instructions (++ "Test Games 2 Through " endGame)
@@ -353,11 +328,7 @@
                          '()
                          (list (instruction-basic "Reload the game with your favorite style.")
                                (instruction-goal  "your favorite game."))
-                         (launcher-img magic-load)))
-
-(define-webpage save-file-as
-  this-curriculum
-  "http://bit.ly/2ImsLCl")
+                         (video-qr "http://bit.ly/2Q2yKAh")))
 
 (define save-as
   (activity-instructions "Save the File"
@@ -365,7 +336,7 @@
                          (list (instruction-basic "Click 'File' and  'Save Definitions As'")
                                (instruction-basic "Rename the file, make sure to keep the '.rkt' at the end!")
                                (instruction-goal  "your renamed and saved file."))
-                         (launcher-img save-file-as)))
+                         (video-qr "http://bit.ly/2ImsLCl")))
 
 (define (change-position url)
   (activity-instructions "Change the Start Position"
@@ -377,7 +348,7 @@
                           (instruction-goal "your collectible starting far away in game."))
                         (video-qr url)))
 
-(define (change-player-position)
+(define (change-player-position url)
   (activity-instructions "Change the Player Position"
                          '()
                          (list                        
@@ -408,20 +379,12 @@
                           (instruction-goal "your game with multiple collectibles."))
                         (video-qr url)))
 
-(define-webpage animate-sprite
-  this-curriculum
-  "http://bit.ly/2DLfNKP")
-
 (define (animate sprite)
   (activity-instructions (++ "Animate Your " (string-titlecase sprite))
                          '()
                          (list (instruction-basic (++ "Duplicate and change frames in Piskel to animate your " (string-downcase sprite)))
                                (instruction-goal (++ "your animated " (string-downcase sprite) " in Piskel.")))
-                         (launcher-img animate-sprite)))
-
-(define-webpage piskel-export-sheet
-  this-curriculum
-  "http://bit.ly/2HSkJQN")
+                         (video-qr "http://bit.ly/2DLfNKP")))
 
 (define export-sprite-sheet
   (activity-instructions "Export Your Sprite Sheet"
@@ -430,11 +393,7 @@
                                (instruction-basic "Change the number of COLUMNS to match the number of frames you have.")
                                (instruction-basic "Export the image to your SAVE_MY_WORK folder.")
                                (instruction-goal "your Sprite Sheet in your SAVE_MY_WORK folder."))
-                         (launcher-img piskel-export-sheet)))
-
-(define-webpage piskel-import-sheet
-  this-curriculum
-  "http://bit.ly/2G35zr6")
+                         (video-qr "http://bit.ly/2HSkJQN")))
 
 (define import-sprite-sheet
   (activity-instructions "Import Your Sprite Sheet"
@@ -443,7 +402,7 @@
                                (instruction-basic "Delete the image and insert your new Sprite Sheet.")
                                (instruction-basic "Change the ROWS and COLUMNS to match.")
                                (instruction-goal "your code with the new Sprite Sheet."))
-                         (launcher-img piskel-import-sheet)))
+                         (video-qr "http://bit.ly/2G35zr6")))
 
 ; === ADVENTURE GAME TASKS ===
 

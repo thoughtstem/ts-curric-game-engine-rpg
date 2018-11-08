@@ -145,6 +145,7 @@
   (define the-code (p:code
                     (start-game (instructions-entity)
                                 #,b
+                                (quest-item-entity)
                                 (item-entity (posn 200 200))
                                 (npc1-entity)
                                 (player-entity)
@@ -166,6 +167,7 @@
                     (start-game (instructions-entity)
                                 (builder (posn 200 200) wood-house)
                                 #,w
+                                (quest-item-entity)
                                 (item-entity (posn 200 200))
                                 (npc1-entity)
                                 (player-entity)
@@ -194,6 +196,7 @@
   
   (define the-code (p:code
                     (start-game (instructions-entity)
+                                (quest-item-entity)
                                 (wood-house (posn 100 300)
                                             #:tile 5)
                                 (builder (posn 200 200) random-npc)
