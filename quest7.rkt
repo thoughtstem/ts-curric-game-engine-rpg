@@ -38,7 +38,7 @@
                                   "You must be new around here."
                                   "Make sure to explore the area.")
                             (list "Nope. I'm just out for a walk."
-                                  "I did drop some coins though.\nPlease keep an eye out for them.")
+                                  "I did drop some coins though.")
                             #,npc-dialog
                             code:blank
                             ))))
@@ -70,7 +70,7 @@
                     ))
   (code+hints the-code
               (list new-code
-                    (hint (p:text "PASTE NEW CODE HERE")))))
+                    (hint (p:text "PASTED CODE")))))
 
 (define (npc-quest-img)
   (define new-code (p:frame (p:code
@@ -170,7 +170,7 @@
                     ))
   (code+hints the-code
               (list new-code
-                    (hint (p:text "PASTE NEW CODE HERE")))))
+                    (hint (p:text "PASTED CODE")))))
 
 (define (npc-response-img)
   (define new-code (p:frame (p:code
@@ -231,9 +231,9 @@
   
   (code+hints the-code
               (list new-code
-                    (hint (p:text "PASTE NEW CODE HERE")))
+                    (hint (p:text "PASTED CODE")))
               (list new-code2
-                    (hint (p:text "TYPE NEW CODE HERE")))))
+                    (hint (p:text "TYPE THIS CODE")))))
 
 (define (quest-reward-img)
   (define new-code (p:frame (p:code
@@ -257,14 +257,14 @@
                     (hint (p:text "TYPE NEW CODE HERE")))))
 
 ; === DEFINE IMAGE FILES ===
-(define-image-file quest-giver-code    images (p:scale (give-quest-code-img) 1.5))
-(define-image-file paste-quest-dialog  images (p:scale (paste-quest-dialog-img) 1.5))
-(define-image-file npc-quest-code      images (p:scale (npc-quest-img) 1.5))
-(define-image-file modify-quest-dialog images (p:scale (modify-quest-dialog-img) 1.5))
-(define-image-file paste-new-response  images (p:scale (paste-new-response-img) 1.5))
-(define-image-file npc-response        images (p:scale (npc-response-img) 1.5))
-(define-image-file score-entity        images (p:scale (score-entity-img) 1.5))
-(define-image-file quest-reward        images (p:scale (quest-reward-img) 1.5))
+(define-image-file quest-giver-code    images (p:scale (give-quest-code-img) 1))
+(define-image-file paste-quest-dialog  images (p:scale (paste-quest-dialog-img) 1))
+(define-image-file npc-quest-code      images (p:scale (npc-quest-img) 1))
+(define-image-file modify-quest-dialog images (p:scale (modify-quest-dialog-img) 1))
+(define-image-file paste-new-response  images (p:scale (paste-new-response-img) 1))
+(define-image-file npc-response        images (p:scale (npc-response-img) 1))
+(define-image-file score-entity        images (p:scale (score-entity-img) 1))
+(define-image-file quest-reward        images (p:scale (quest-reward-img) 1))
 
 ;(with-award 1 (add-quest-giver))
 (define (add-quest-giver)
@@ -326,10 +326,12 @@
 
 ;(with-award 1 add-score-entity)
 (define (add-response-npc)
-  (activity-instructions "Add Reponse to NPC"
+  (activity-instructions "Add New Response to NPC"
                          '()
-                         (list (instruction-basic "Launch the image to see where to type the code")
-                               (instruction-goal "your new code in your project"))
+                         (list (instruction-basic "Go back to the npc quest component.")
+                               (instruction-basic "Use the launcher and type the new code.")
+                               (instruction-basic "Test the game again and complete the quest.")
+                               (instruction-goal "new npc responses after completing the quest."))
                          (launcher-img npc-response)))
 
 ;(with-award 1 add-score-entity)
@@ -357,15 +359,15 @@
   (list
    (with-award 1 (add-quest-giver))
    (with-award 1 (add-quest-complete-dialog))
-   (with-award 1 (add-npc-quest-component))
+   (with-award 2 (add-npc-quest-component))
    (with-award 1 (test-quest-system))
-   (with-award 1 (change-quest-dialog))
-   (with-award 0 (add-new-response))
+   (with-award 2 (change-quest-dialog))
+   (with-award 1 (add-new-response))
    (with-award 1 (add-response-npc))
    (choose "any"
            (list
             (with-award 1 (add-score-entity))
-            (with-award 1 (add-quest-reward))
+            (with-award 2 (add-quest-reward))
             ))
    ))
 

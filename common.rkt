@@ -313,8 +313,6 @@
                         (video-qr url)))
 
 (define (replace-sheet webpage)
-
-  
   (activity-instructions "Replace Your Sprite"
                          '()
                          (list
@@ -410,12 +408,20 @@
                           (instruction-goal "your game with multiple collectibles."))
                         (video-qr url)))
 
+(define-webpage animate-sprite
+  this-curriculum
+  "http://bit.ly/2DLfNKP")
+
 (define (animate sprite)
   (activity-instructions (++ "Animate Your " (string-titlecase sprite))
                          '()
                          (list (instruction-basic (++ "Duplicate and change frames in Piskel to animate your " (string-downcase sprite)))
                                (instruction-goal (++ "your animated " (string-downcase sprite) " in Piskel.")))
-                         (video-qr "http://bit.ly/2DLfNKP")))
+                         (launcher-img animate-sprite)))
+
+(define-webpage piskel-export-sheet
+  this-curriculum
+  "http://bit.ly/2HSkJQN")
 
 (define export-sprite-sheet
   (activity-instructions "Export Your Sprite Sheet"
@@ -424,7 +430,11 @@
                                (instruction-basic "Change the number of COLUMNS to match the number of frames you have.")
                                (instruction-basic "Export the image to your SAVE_MY_WORK folder.")
                                (instruction-goal "your Sprite Sheet in your SAVE_MY_WORK folder."))
-                         (video-qr "http://bit.ly/2HSkJQN")))
+                         (launcher-img piskel-export-sheet)))
+
+(define-webpage piskel-import-sheet
+  this-curriculum
+  "http://bit.ly/2G35zr6")
 
 (define import-sprite-sheet
   (activity-instructions "Import Your Sprite Sheet"
@@ -433,7 +443,7 @@
                                (instruction-basic "Delete the image and insert your new Sprite Sheet.")
                                (instruction-basic "Change the ROWS and COLUMNS to match.")
                                (instruction-goal "your code with the new Sprite Sheet."))
-                         (video-qr "http://bit.ly/2G35zr6")))
+                         (launcher-img piskel-import-sheet)))
 
 ; === ADVENTURE GAME TASKS ===
 
