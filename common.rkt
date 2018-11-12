@@ -363,7 +363,7 @@
 (define save-as
   (activity-instructions "Save the File"
                          '()
-                         (list (instruction-basic "Click 'File' and  'Save Definitions As'")
+                         (list (instruction-basic "Click 'File' and select 'Save Definitions As'")
                                (instruction-basic "Rename the file, make sure to keep the '.rkt' at the end!")
                                (instruction-goal  "your renamed and saved file."))
                          (launcher-img save-file-as)))

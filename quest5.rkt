@@ -226,7 +226,7 @@
   (define new-code (p:frame (p:code
                              (backpack-system #:store-key   "e"
                                               #:drop-key    "q"
-                                              #:backpackkey "r")) #:color "red"))
+                                              #:backpack-key "r")) #:color "red"))
   (define the-code (p:code
                     (define (player-entity)
                       (sprite->entity player-sprite
@@ -262,22 +262,22 @@
                     (hint (p:text "TYPE NEW CODE HERE")))))
 
 ; -- DEFINE IMAGE FILES
-(define-image-file backpack-system      images (p:scale (backpack-img) 1.5))
-(define-image-file new-item-code        images (p:scale (new-item-img) 1.5))
-(define-image-file add-item-to-start    images (p:scale (add-quest-item-entity-img) 1.5))
-(define-image-file add-physics-to-item  images (p:scale (add-physics-to-item-img) 1.5))
-(define-image-file change-item-tile     images (p:scale (item-different-tile-img) 1.5))
-(define-image-file random-item-tile     images (p:scale (item-random-tile-img) 1.5))
-(define-image-file change-item-sprite   images (p:scale (change-item-sprite-img) 1.5))
-(define-image-file change-backpack-keys images (p:scale (change-backpack-keys-img) 1.5))
+(define-image-file backpack-system      images (p:scale (backpack-img) 1))
+(define-image-file new-item-code        images (p:scale (new-item-img) 1))
+(define-image-file add-item-to-start    images (p:scale (add-quest-item-entity-img) 1))
+(define-image-file add-physics-to-item  images (p:scale (add-physics-to-item-img) 1))
+(define-image-file change-item-tile     images (p:scale (item-different-tile-img) 1))
+(define-image-file random-item-tile     images (p:scale (item-random-tile-img) 1))
+(define-image-file change-item-sprite   images (p:scale (change-item-sprite-img) 1))
+(define-image-file change-backpack-keys images (p:scale (change-backpack-keys-img) 1))
 
 ;------ Start Quest 5 cards ---
 (define add-backpack
   (activity-instructions "Add Backpack System"
                          '()
-                         (list (instruction-basic "Scan the QR, add the new code to your player-entity")
-                               (instruction-basic (text-with-image "Type: " (codify "(backpack-system)")))
+                         (list (instruction-basic "Locate the (player-entity) code.")
                                (instruction-basic "AFTER (stop-on-edge)")
+                               (instruction-basic (text-with-image "Type: " (codify "(backpack-system)")))
                                (instruction-goal "your new code in your project"))
                          (launcher-img backpack-system)))
   
@@ -293,8 +293,8 @@
 (define add-item-ent-to-start
   (activity-instructions "Add Item to start-game"
                          '()
-                         (list (instruction-basic "Scan the QR, add the new code to start-game")
-                               (instruction-basic (text-with-image "Type: " (codify "(quest-item-entity)")))
+                         (list (instruction-basic "Inside of (start-game ...) type :")
+                               (instruction-basic (text-with-image "" (codify "(quest-item-entity)")))
                                (instruction-basic "AFTER (instructions-entity)")
                                (instruction-goal "your new code in your project"))
                          (launcher-img add-item-to-start)))
@@ -312,9 +312,9 @@
 (define add-physics
   (activity-instructions "Add Physics to Item"
                          '()
-                         (list (instruction-basic "Scan the QR, add the new code to (quest-item)")
-                               (instruction-basic (text-with-image "Type: " (codify "(physical-collider)")))
-                               (instruction-basic (text-with-image "Type: " (codify "(stop-on-edge)")))
+                         (list (instruction-basic "Inside of (quest-item-entity) type:")
+                               (instruction-basic (text-with-image "" (codify "(physical-collider)")))
+                               (instruction-basic (text-with-image "" (codify "(stop-on-edge)")))
                                (instruction-basic "AFTER (storable)")
                                (instruction-goal "your new code in your project"))
                          (launcher-img add-physics-to-item)))
@@ -324,8 +324,7 @@
 (define change-spawn-tile
   (activity-instructions "Change Starting Tile"
                          '()
-                         (list (instruction-basic "Scan the QR")
-                               (instruction-basic "Edit the code in (quest-item)")
+                         (list (instruction-basic "Edit the code in (quest-item-entity)")
                                (instruction-basic "Change the 1 to a number between 0-8")
                                (instruction-basic (text-with-image "-> "(codify "(active-on-bg 1)")))
                                (instruction-goal "your new code in your project"))
@@ -334,7 +333,7 @@
 (define start-rand-tile
   (activity-instructions "Start on Random Tile"
                          '()
-                         (list (instruction-basic "Scan the QR, add the new code to (quest-item)")
+                         (list (instruction-basic "Add the new code to (quest-item-entity)")
                                (instruction-basic (text-with-image "Type: " (codify "(active-on-random)")))
                                (instruction-basic "AFTER (respawn 'anywhere)")
                                (instruction-goal "your new code in your project"))
@@ -352,7 +351,7 @@
 (define change-backpack-key-values
   (activity-instructions "Change Backpack Keys"
                          '()
-                         (list (instruction-basic "Scan the QR, edit the (backpack-system) code")
+                         (list (instruction-basic "Edit the (backpack-system) code")
                                (instruction-basic "You can change the keys to grab, drop an item, and open backpack.")
                                (instruction-goal "your new code in your project"))
                          (launcher-img change-backpack-keys)))
