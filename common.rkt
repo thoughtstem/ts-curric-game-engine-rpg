@@ -146,12 +146,13 @@
 
 (define-webpage open-file-video
   this-curriculum
-  "http://bit.ly/2IvXVHJ")
+  "https://bit.ly/2Pnv27J")
 
 (define open-file
   (activity-instructions "Open Your File"
                          '()
-                         (list (instruction-basic "Open your SAVE_MY_WORK folder")
+                         (list (instruction-open "DrRacket")
+                               (instruction-basic "Go to File > Open, navigate to SAVE_MY_WORK")
                                (instruction-basic "Double-click your .rkt file")
                                (instruction-goal "your file open in DrRacket."))
                          (launcher-img open-file-video)))
@@ -182,7 +183,7 @@
 (define (google-form webpage)
   (activity-instructions "Open the Game Review"
                          '()
-                         (list (instruction-basic "Scan the card to open the Game Review.")
+                         (list (instruction-basic "Load the Game Review.")
                                (instruction-basic "Answer the questions about the demo games.")
                                (instruction-goal "your Google Form submitted."))
                          (launcher-img webpage)))
