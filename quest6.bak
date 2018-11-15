@@ -315,8 +315,7 @@
 
 (define (quest-cards)
   (map shrink
-       (make-picts "red" "Q6-" day6-2dgame (settings (bg (local-bitmap "bg-arcade.png")) LINK LINK-BONUS LINK-BONUS)))
-)
+       (make-picts "red" "Q6-" day6-2dgame (settings (bg (local-bitmap "bg-arcade.png")) LINK LINK-BONUS LINK-BONUS))))
 
 
 (define (quest6)

@@ -373,10 +373,11 @@
 
 (define (quest-cards)
   (map shrink
-       (make-picts "red" "Q7-" day7-2dgame (settings (bg (local-bitmap "bg-arcade.png")) SAMUS SAMUS-BONUS SAMUS-BONUS))))
+       (make-picts "red" "Q7-" day7-2dgame (settings (bg (local-bitmap "bg-arcade.png")) SAMUS SAMUS-BONUS SAMUS-BONUS)))
+  )
 
 (define (quest7)
    (quest-cards))
 
-(module+ test
-  (quest7))
+;(module+ test
+;  (quest7))

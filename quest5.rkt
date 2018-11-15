@@ -378,7 +378,8 @@
 
 (define (quest5)
   (map shrink
-       (quest5-full)))
+       (quest5-full))
+)
 
 
 
