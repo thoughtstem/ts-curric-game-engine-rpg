@@ -1,5 +1,32 @@
 #lang racket
 
+;High level goals:
+#;(
+
+   Title: Builder Code
+
+          Main goal: Add houses to your game tiles
+          * Add a builder chest to spawn houses
+          * Run the game, create a house, and place it in a tile
+          * Write down the posn of the house
+          * Use that posn to type the house code
+     
+          
+          Stretch goals: Add NPCs to game tiles
+          * Modify the builder code
+          * Run the game, create an NPC, and place it in a tile
+          * Get the posn and use it to code the NPC
+      
+          ======
+
+          Quest-complete goals:  
+
+          Mastery level 1:  TBD
+
+          Mastery level 2:  TBD
+      
+          )
+
 (provide quest6)
 
 (require ts-racket)
@@ -22,9 +49,6 @@
 
 (define stone-house-img
   (draw-entity (stone-house)))
-
-
-
 
 (define (house-placer-worksheet-1)
   (define house-type (code-blank))

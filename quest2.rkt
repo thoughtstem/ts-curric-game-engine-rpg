@@ -1,5 +1,31 @@
 #lang slideshow
 
+;High level goals:
+#;(
+
+   Title: Edit Collectible
+
+   Main goal: Draw a collectible, add it to the game
+      * Draw a collectible in Piskel
+      * Export it
+      * Import it into DrRacket
+      * Test the game
+
+   Stretch goals:
+      * Re-design the collectible
+      * Change player starting pos
+      * Change player starting tile
+
+   ======
+
+   Quest-complete goals: TBD
+
+   Mastery level 1:  TBD
+
+   Mastery level 2:  TBD
+      
+   )
+
 (provide quest2)
 
 (require ts-curric-common)

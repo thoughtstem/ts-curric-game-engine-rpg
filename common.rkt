@@ -2,12 +2,9 @@
 
 (provide shrink
          open-racket-only
-         load-code
-         load-code-more
          google-form
          draw-sprite-style
          export-from-piskel
-         reload-fave
          save-as
          replace-sheet
          local-bitmap
@@ -65,6 +62,7 @@
 
 (require racket/runtime-path)
 (define-runtime-path images "images")
+(define-runtime-path starter-files "starter-files")
 (define-runtime-path this-curriculum ".")
 
 (define (local-avatar s)
@@ -155,7 +153,7 @@
                                (instruction-basic "Go to File > Open, navigate to SAVE_MY_WORK")
                                (instruction-basic "Double-click your .rkt file")
                                (instruction-goal "your file open in DrRacket."))
-                         (launcher-img open-file-video)))
+                         (scale-to-fit (local-bitmap "open-file.png") 250 250 #:mode 'preserve)))
 
 (define (demo-code action version goal)
   (activity-instructions "Test the Game"
@@ -199,7 +197,6 @@
   (activity-instructions (++ "Draw Your " (string-titlecase sprite))
                          '()
                          (list (instruction-open "Piskel")
-                               (instruction-basic "Open Piskel.")
                                (instruction-basic (++ "Paint a " (string-downcase sprite) " for your game."))
                                (instruction-goal "your completed texture."))
                          (scale (local-bitmap image) 2.0)))
@@ -212,17 +209,14 @@
                                (instruction-goal "your completed texture."))
                          (scale (local-bitmap image) 2.0)))
 
-(define-webpage piskel-export
-  this-curriculum
-  "http://bit.ly/2Ark1Wv")
-
 (define export-from-piskel
   (activity-instructions "Export the Texture"
                          '()
                          (list (instruction-basic "Export from Piskel to SAVE_MY_WORK.")
-                               (instruction-basic "Make sure it ends in '.png' and name it whatever you want.")
+                               (instruction-basic "Make sure the file name ends in '.png'")
                                (instruction-goal "your exported file."))
-                         (launcher-img piskel-export)))
+                         (scale-to-fit (local-bitmap "piskel_export.png") 400 350 #:mode 'preserve)))
+
 
 (define (import-to-piskel sprite)
   (activity-instructions (++ "Import Your " (string-titlecase sprite))
@@ -297,9 +291,8 @@
   (activity-instructions "Re-design Your Sprite"
                          '()
                          (list
-                          (instruction-basic "Add more detail to your sprite.")                          
-                          (instruction-basic "Insert it in your code.")
-                          (instruction-basic "Scale down the image if it is too big.")
+                          (instruction-basic "Change the colors, add more to it!")
+                          (instruction-basic "Export it from Piskel and insert this new image in your code.")
                           (instruction-goal "your new changes running in game."))
                         (launcher-img webpage)))
 
@@ -329,15 +322,38 @@
   this-curriculum
   "http://bit.ly/2Q2yKAh")
 
-(define (load-code demo-name)
-  (activity-instructions "Load the Starter Code"
-                         '()
-                         (list (instruction-basic "Click on TS Magic Loader. In the text field, type:")
-                               (instruction-basic (codify demo-name))
-                               (instruction-basic "Click the Load button")
-                               (instruction-basic "Run the code.")
-                               (instruction-goal  "The demo code running in DrRacket"))
-                         (launcher-img magic-load)))
+(define-starter-code style1-starter
+  starter-files
+  "tsgd_style_1.rkt")
+
+(define-starter-code style2-starter
+  starter-files
+  "tsgd_style_2.rkt")
+
+(define-starter-code style3-starter
+  starter-files
+  "tsgd_style_3.rkt")
+
+(define-starter-code style4-starter
+  starter-files
+  "tsgd_style_4.rkt")
+
+(define-starter-code quest-item
+  starter-files
+  "tsgd_quest_item.rkt")
+
+(define-starter-code complete-dialog
+  starter-files
+  "tsgd_quest_complete_dialog.rkt")
+
+(define-starter-code new-response
+  starter-files
+  "tsgd_new_response.rkt")
+
+(define-starter-code score
+  starter-files
+  "tsgd_score.rkt")
+
 
 (define (load-code-more endGame imgStr)
   (activity-instructions (++ "Test Games 2 Through " endGame)
@@ -348,13 +364,6 @@
                                (instruction-basic (++ "Continue until demo " endGame "."))
                                (instruction-goal  "your game window running."))
                          (scale-to-fit (local-bitmap imgStr) 250 250 #:mode 'preserve)))
-
-(define reload-fave
-  (activity-instructions "Reload Your Favorite Style"
-                         '()
-                         (list (instruction-basic "Reload the game with your favorite style.")
-                               (instruction-goal  "your favorite game."))
-                         (launcher-img magic-load)))
 
 (define-webpage save-file-as
   this-curriculum

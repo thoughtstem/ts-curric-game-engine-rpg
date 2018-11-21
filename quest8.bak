@@ -1,5 +1,27 @@
 #lang racket
 
+;High level goals:
+#;(
+
+   Title: 
+
+          Main goal:
+          * 
+     
+          Stretch goals:
+          *
+          
+          ======
+
+          Quest-complete goals:  
+
+          Mastery level 1:  TBD
+
+          Mastery level 2:  TBD
+      
+          )
+
+
 (provide quest8)
 
 (require ts-racket)
@@ -231,7 +253,8 @@
 
 (define (quest-cards)
   (map shrink
-       (make-picts "red" "Q8-" day8-2dgame (settings (bg (local-bitmap "bg-arcade.png")) PIKACHU PIKACHU-BONUS PIKACHU-BONUS))))
+       (make-picts "red" "Q8-" day8-2dgame (settings (bg (local-bitmap "bg-arcade.png")) PIKACHU PIKACHU-BONUS PIKACHU-BONUS)))
+  )
 
 
 (define (quest8)

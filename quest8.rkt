@@ -1,5 +1,30 @@
 #lang racket
 
+;High level goals:
+#;(
+
+   Title: 
+
+          Main goal: Add Environment Elements
+          * Add the element to start game
+          * Use the builder to place the element in a tile
+          * Get the posn and code the element
+     
+          Stretch goals:
+          * Add Mini Map
+          * Add more elements
+          
+          ======
+
+          Quest-complete goals:  
+
+          Mastery level 1:  TBD
+
+          Mastery level 2:  TBD
+      
+          )
+
+
 (provide quest8)
 
 (require ts-racket)

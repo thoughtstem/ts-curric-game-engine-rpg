@@ -1,5 +1,30 @@
 #lang slideshow
 
+;High level goals:
+#;(
+
+   Title: Backpack System
+
+          Main goal: Add a backpack system to the player
+          * Add backpak
+          * Add new item and physics to main code
+          * Test
+          
+          Stretch goals:
+          * Change Item's starting tile
+          * Change Item's Sprite
+          * Change backpack keys
+      
+          ======
+
+          Quest-complete goals:  
+
+          Mastery level 1:  TBD
+
+          Mastery level 2:  TBD
+      
+          )
+
 (provide quest5)
 
 (require (prefix-in p: pict/code))
@@ -44,19 +69,17 @@
                                       (player-edge-system)
                                       (on-collide "item" (do-many (spawn (item-entity (posn 0 0)) #:relative? #f)
                                                                   (play-sound PICKUP-SOUND)))
-                                      ))))
-  (code+hints the-code
-              (list new-code
-                    (hint (p:text "TYPE NEW CODE HERE")))))
+                                      ))) )
+  (p:frame (code+hints #:settings hints-on-bottom
+            the-code
+            (list new-code
+                  (hint (p:text "TYPE NEW CODE HERE"))))#:color "red"))
 
 (define (new-item-img)
   (define new-code (p:frame (p:code
                              (define (quest-item-entity)
                                (sprite->entity (sheet->sprite #,(local-bitmap "lightsabers.png")
-                                                              #:rows       1
-                                                              #:columns    2
-                                                              #:row-number 1
-                                                              #:speed      3)
+                                                              #:columns    2)
                                                #:position   (posn 100 100)
                                                #:name       "Lightsaber"
                                                #:components (active-on-bg 1)
@@ -91,9 +114,9 @@
                                       (on-key "i" die)))
                     ))
   
-  (code+hints the-code
+  (p:frame (code+hints the-code #:settings hints-on-bottom
               (list new-code
-                    (hint (p:text "PASTE NEW CODE HERE")))))
+                    (hint (p:text "PASTE NEW CODE HERE"))))))
   
 (define (add-quest-item-entity-img)
   (define new-code (p:frame (p:code
@@ -106,11 +129,11 @@
                                 (npc1-entity)
                                 (player-entity)
                                 (bg-entity))
-                    ))
+                    ) )
   
-  (code+hints the-code
+  (p:frame (code+hints the-code
               (list new-code
-                    (hint (p:text "TYPE NEW CODE HERE")))))
+                    (hint (p:text "TYPE NEW CODE HERE"))))#:color "red"))
 
 (define (add-physics-to-item-img)
   (define new-code (p:frame (p:code
@@ -121,10 +144,7 @@
                      
                     (define (quest-item-entity)
                       (sprite->entity (sheet->sprite #,(local-bitmap "lightsabers.png")
-                                                     #:rows       1
-                                                     #:columns    2
-                                                     #:row-number 1
-                                                     #:speed      3)
+                                                     #:columns    2)
                                       #:position   (posn 100 100)
                                       #:name       "Lightsaber"
                                       #:components (active-on-bg 1)
@@ -134,27 +154,24 @@
                                       (on-start (do-many (respawn 'anywhere)
                                                          show))))
 
-                    ))
+                    ) )
   
-  (code+hints the-code
+  (p:frame (code+hints the-code #:settings hints-on-bottom
               (list new-code
-                    (hint (p:text "TYPE NEW CODE HERE")))))
+                    (hint (p:text "TYPE NEW CODE HERE"))))#:color "red"))
 
 (define (item-different-tile-img)
   (define new-code (p:frame (p:code
-                             (active-on-bg 1)) #:color "red"))
+                              1) #:color "red"))
   (define the-code (p:code
                     (code:comment " ==== QUEST ITEM DEFINITION ====")
                      
                     (define (quest-item-entity)
                       (sprite->entity (sheet->sprite #,(local-bitmap "lightsabers.png")
-                                                     #:rows       1
-                                                     #:columns    2
-                                                     #:row-number 1
-                                                     #:speed      3)
+                                                     #:columns    2)
                                       #:position   (posn 100 100)
                                       #:name       "Lightsaber"
-                                      #:components #,new-code
+                                      #:components (active-on-bg #,new-code )
                                       (hidden)
                                       (storable)
                                       (physical-collider)
@@ -163,9 +180,9 @@
                                                          show))))
                     ))
   
-  (code+hints the-code
+  (p:frame (code+hints the-code #:settings hints-on-bottom
               (list new-code
-                    (hint (p:text "CHANGE THIS NUMBER")))))
+                    (hint (p:text "CHANGE THIS NUMBER")))) #:color "red"))
 
 (define (item-random-tile-img)
   (define new-code (p:frame (p:code
@@ -175,10 +192,7 @@
                      
                     (define (quest-item-entity)
                       (sprite->entity (sheet->sprite #,(local-bitmap "lightsabers.png")
-                                                     #:rows       1
-                                                     #:columns    2
-                                                     #:row-number 1
-                                                     #:speed      3)
+                                                     #:columns    2)
                                       #:position   (posn 100 100)
                                       #:name       "Lightsaber"
                                       #:components (active-on-bg 5)
@@ -191,17 +205,14 @@
                                                          show))))
                     ))
   
-  (code+hints the-code
+  (p:frame (code+hints the-code #:settings hints-on-bottom
               (list new-code
-                    (hint (p:text "TYPE NEW CODE HERE")))))
+                    (hint (p:text "TYPE NEW CODE HERE")))) #:color "red"))
 
 (define (change-item-sprite-img)
   (define new-code (p:frame (p:code
                              (sheet->sprite #,(local-bitmap "sword-sprite-sheet.png")
-                                            #:rows       1
-                                            #:columns    3
-                                            #:row-number 1
-                                            #:speed      3)) #:color "red"))
+                                            #:columns    3)) #:color "red"))
   (define the-code (p:code
   
                     (define (quest-item-entity)
@@ -216,17 +227,17 @@
                                       (on-start (do-many (respawn 'anywhere)
                                                          (active-on-random)
                                                          show))))
-                    ))
+                    ) )
   
-  (code+hints the-code
+  (p:frame (code+hints the-code
               (list new-code
-                    (hint (p:text "INSERT IMAGE HERE")))))
+                    (hint (p:text "INSERT IMAGE HERE"))))#:color "red" ))
 
 (define (change-backpack-keys-img)
   (define new-code (p:frame (p:code
-                             (backpack-system #:store-key   "e"
-                                              #:drop-key    "q"
-                                              #:backpack-key "r")) #:color "red"))
+                             #:store-key   "e"
+                             #:drop-key    "q"
+                             #:backpack-key "r") #:color "red"))
   (define the-code (p:code
                     (define (player-entity)
                       (sprite->entity player-sprite
@@ -237,7 +248,7 @@
                                       (sound-stream)
                                       (key-movement 10 #:rule all-dialog-closed?)
                                       (stop-on-edge)
-                                      #,new-code
+                                      (backpack-system #,new-code )
                                       (counter 0)
                                       (on-no-key-movement (stop-animation))
                                       (on-key-movement (start-animation))
@@ -255,21 +266,21 @@
                                       (on-collide "item" (do-many (spawn (item-entity (posn 0 0)) #:relative? #f)
                                                                   (play-sound PICKUP-SOUND)))
                                       ))
-                    ))
+                    ) )
   
-  (code+hints the-code
+  (p:frame (code+hints the-code #:settings hints-on-bottom
               (list new-code
-                    (hint (p:text "TYPE NEW CODE HERE")))))
+                    (hint (p:text "TYPE NEW CODE HERE"))))#:color "red"))
 
 ; -- DEFINE IMAGE FILES
-(define-image-file backpack-system      images (p:scale (backpack-img) 1))
-(define-image-file new-item-code        images (p:scale (new-item-img) 1))
-(define-image-file add-item-to-start    images (p:scale (add-quest-item-entity-img) 1))
-(define-image-file add-physics-to-item  images (p:scale (add-physics-to-item-img) 1))
-(define-image-file change-item-tile     images (p:scale (item-different-tile-img) 1))
-(define-image-file random-item-tile     images (p:scale (item-random-tile-img) 1))
-(define-image-file change-item-sprite   images (p:scale (change-item-sprite-img) 1))
-(define-image-file change-backpack-keys images (p:scale (change-backpack-keys-img) 1))
+(define-image-file backpack-system      images (backpack-img))
+(define-image-file new-item-code        images (new-item-img))
+(define-image-file add-item-to-start    images (add-quest-item-entity-img))
+(define-image-file add-physics-to-item  images (add-physics-to-item-img))
+(define-image-file change-item-tile     images (item-different-tile-img))
+(define-image-file random-item-tile     images (item-random-tile-img))
+(define-image-file change-item-sprite   images (change-item-sprite-img))
+(define-image-file change-backpack-keys images (change-backpack-keys-img))
 
 ;------ Start Quest 5 cards ---
 (define add-backpack
@@ -284,10 +295,11 @@
 (define add-item-code
   (activity-instructions "Add Item Code"
                          '()
-                         (list (instruction-basic "Open TS Magic Loader.")
-                               (instruction-basic (text-with-image "Load: " (scale (codify "tsgd_quest_item") 1.5)))
-                               (instruction-basic "Copy/Paste the Code BEFORE (define (instructions-entity)")
-                               (instruction-goal "your new code in your project"))
+                         (list (instruction-basic "Use the launch code below")
+                               (instruction-basic (rendered-launchable-image (launcher-img quest-item)))
+                               (instruction-basic "Copy the code that opens.")
+                               (instruction-basic "Use the launch code to the left to see where to paste it")
+                               (instruction-goal "the item code in your game"))
                          (launcher-img new-item-code)))
   
 (define add-item-ent-to-start
