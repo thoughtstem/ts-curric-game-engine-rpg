@@ -52,7 +52,7 @@
          YOSHI        
          YOSHI-BONUS 
          SONIC      
-         SONIC-BONUS  )
+         SONIC-BONUS)
 
 
 
@@ -96,6 +96,55 @@
 (define YOSHI-BONUS   (circlify "red" (local-avatar "yoshi")))
 (define SONIC         (circlify "blue" (local-avatar "sonic")))
 (define SONIC-BONUS   (circlify "red" (local-avatar "sonic")))
+
+;==== starter file launch codes ====
+
+(define-starter-code rpg1-starter
+  starter-files
+  "tsgd_style_1.rkt")
+
+(define-starter-code rpg2-starter
+  starter-files
+  "tsgd_style_2.rkt")
+
+(define-starter-code rpg3-starter
+  starter-files
+  "tsgd_style_3.rkt")
+
+(define-starter-code rpg4-starter
+  starter-files
+  "tsgd_style_4.rkt")
+
+;==== complete file launch codes ====
+
+(define-starter-code q1-complete
+  starter-files
+  "tsgd_style_1.rkt")
+
+(define-starter-code q2-complete
+  starter-files
+  "tsgd_style_1.rkt")
+
+(define-starter-code q3-complete
+  starter-files
+  "tsgd_style_1.rkt")
+
+(define-starter-code q4-complete
+  starter-files
+  "tsgd_adventure_quest4_complete.rkt")
+
+(define-starter-code q5-complete
+  starter-files
+  "tsgd_adventure_quest5_complete.rkt")
+
+(define-starter-code q6-complete
+  starter-files
+  "tsgd_adventure_quest6_complete.rkt")
+
+(define-starter-code q7-complete
+  starter-files
+  "tsgd_adventure_quest7_complete.rkt")
+
 
 (define (scan-badge num)
   (activity-instructions (++ "Quest " num ": Scan Your Badge")
