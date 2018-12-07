@@ -1,5 +1,31 @@
 #lang slideshow
 
+;High level goals:
+#;(
+
+   Title: Edit Collectible
+
+   Main goal: Draw a collectible, add it to the game
+      * Draw a collectible in Piskel
+      * Export it
+      * Import it into DrRacket
+      * Test the game
+
+   Stretch goals:
+      * Re-design the collectible
+      * Change player starting pos
+      * Change player starting tile
+
+   ======
+
+   Quest-complete goals: TBD
+
+   Mastery level 1:  TBD
+
+   Mastery level 2:  TBD
+      
+   )
+
 (provide quest2)
 
 (require ts-curric-common)
@@ -32,6 +58,7 @@
 
 (define (quest2)
   (map shrink
-       (make-picts "red" "Q2-" day2-2dgame (settings (bg (local-bitmap "bg-arcade.png")) MARIO MARIO-BONUS MARIO-BONUS))))
+       (make-picts "red" "Q2-" day2-2dgame (settings (bg (local-bitmap "bg-arcade.png")) MARIO MARIO-BONUS MARIO-BONUS)))
+  )
 
 ;(map slide (make-picts "red" "Q2-" day2-2dgame (settings (bg (local-bitmap "bg-arcade.png")) MARIO MARIO-BONUS MARIO-BONUS)))

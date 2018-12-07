@@ -1,5 +1,28 @@
 #lang slideshow
 
+;High level goals:
+#;(
+
+   Title: Animating Sprites 
+
+   Main goal: Animate collectible
+      * Import collectible image into Piskel, add multiple frames, export sheet
+      * Import collectible into DrRacket game, test it
+
+   Stretch goals: Animate main character
+      * Import main character image into Piskel, add multiple frames, export sheet
+      * Import main character into DrRacket game, test it
+      
+   ======
+
+   Quest-complete goals:  
+
+   Mastery level 1:  TBD
+
+   Mastery level 2:  TBD
+      
+   )
+
 (provide quest3)
 
 (require ts-curric-common)
@@ -29,6 +52,7 @@
 
 (define (quest3)
   (map shrink
-       (make-picts "red" "Q3-" day3-2dgame (settings (bg (local-bitmap "bg-arcade.png")) G-MUSH G-MUSH-BONUS G-MUSH-BONUS))))
+       (make-picts "red" "Q3-" day3-2dgame (settings (bg (local-bitmap "bg-arcade.png")) G-MUSH G-MUSH-BONUS G-MUSH-BONUS)))
+  )
 
 ;(map slide (make-picts "red" "Q3-" day3-2dgame (settings (bg (local-bitmap "bg-arcade.png")) G-MUSH G-MUSH-BONUS G-MUSH-BONUS)))

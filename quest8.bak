@@ -5,14 +5,11 @@
 
    Title: 
 
-          Main goal: Add Environment Elements
-          * Add the element to start game
-          * Use the builder to place the element in a tile
-          * Get the posn and code the element
+          Main goal:
+          * 
      
           Stretch goals:
-          * Add Mini Map
-          * Add more elements
+          *
           
           ======
 
@@ -31,7 +28,7 @@
 (require ts-curric-common)
 
 (require (only-in game-engine draw-entity)
-         game-engine-rpg )
+         (except-in game-engine-rpg room) )
 
 (require (prefix-in p: pict/code))
 (require (prefix-in p: pict))

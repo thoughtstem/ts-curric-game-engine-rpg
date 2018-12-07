@@ -1,5 +1,27 @@
 #lang slideshow
 
+;High level goals:
+#;(
+
+   Title: Dialog and NPC Mode 
+
+   Main goal: Edit the Player's and NPC Dialog
+      * 
+
+   Stretch goals: Animate main character
+      * Import main character image into Piskel, add multiple frames, export sheet
+      * Import main character into DrRacket game, test it
+      
+   ======
+
+   Quest-complete goals:  
+
+   Mastery level 1:  TBD
+
+   Mastery level 2:  TBD
+      
+   )
+
 (provide quest4)
 
 (require ts-curric-common)
@@ -23,6 +45,7 @@
 
 (define (quest4)
   (map shrink
-       (make-picts "red" "Q4-" day4-2dgame (settings (bg (local-bitmap "bg-arcade.png")) STAR STAR-BONUS STAR-BONUS))))
+       (make-picts "red" "Q4-" day4-2dgame (settings (bg (local-bitmap "bg-arcade.png")) STAR STAR-BONUS STAR-BONUS)))
+)
 
 ;(map slide ;(make-picts "red" "Q4-" day4-2dgame (settings (bg (local-bitmap "bg-arcade.png")) STAR STAR-BONUS STAR-BONUS)))

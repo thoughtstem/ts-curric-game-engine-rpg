@@ -1,5 +1,30 @@
 #lang racket
 
+;High level goals:
+#;(
+
+   Title: Quest Dialog System
+
+          Main goal: Add a system that changes dialogs when quest is complete
+          * Add system to player and NPC
+          * Edit the responses
+          * Create new responses
+     
+          
+          Stretch goals: Add score entity and reward system
+          * Add entity that keeps track of your gold
+          * Add reward system to quest to get gold
+      
+          ======
+
+          Quest-complete goals:  
+
+          Mastery level 1:  TBD
+
+          Mastery level 2:  TBD
+      
+          )
+
 (provide quest7)
 
 (require ts-racket)
@@ -278,12 +303,13 @@
 
 ;   (with-award 1 (add-quest-complete-dialog))
 (define (add-quest-complete-dialog)
-   (activity-instructions "Add Quest Complete Dialog"
-                        '()
-                         (list (instruction-basic "Open TS Magic Loader.")
-                               (instruction-basic (text-with-image "Load: " (codify "tsgd_quest_complete_dialog")))
-                               (instruction-basic "Copy/Paste the Code BEFORE the entity definitions")
-                               (instruction-goal "your new code in your project"))
+  (activity-instructions "Add Quest Complete Dialog"
+                         '()
+                         (list (instruction-basic "Use the launch code below")
+                               (instruction-basic (rendered-launchable-image (launcher-img complete-dialog)))
+                               (instruction-basic "Copy the code that opens.")
+                               (instruction-basic "Use the launch code to the left to see where to paste it")
+                               (instruction-goal "your code updated"))
                          (launcher-img paste-quest-dialog)))
 
 ;   (with-award 1 (add-npc-quest-component))
@@ -317,11 +343,12 @@
 ;   (with-award 1 (add-new-response))
 (define (add-new-response)
    (activity-instructions "Add New Reponse Dialog"
-                        '()
-                         (list (instruction-basic "Open TS Magic Loader.")
-                               (instruction-basic (text-with-image "Load: " (codify "tsgd_new_response")))
-                               (instruction-basic "Launch the image to see where to paste the code")
-                               (instruction-goal "your new code in your project"))
+                         '()
+                         (list (instruction-basic "Use the launch code below")
+                               (instruction-basic (rendered-launchable-image (launcher-img new-response)))
+                               (instruction-basic "Copy the code that opens.")
+                               (instruction-basic "Use the launch code to the left to see where to paste it")
+                               (instruction-goal "your code updated"))
                          (launcher-img paste-new-response)))
 
 ;(with-award 1 add-score-entity)
@@ -337,12 +364,12 @@
 ;(with-award 1 add-score-entity)
 (define (add-score-entity)
    (activity-instructions "Add Score Entity"
-                        '()
-                         (list (instruction-basic "Open TS Magic Loader.")
-                               (instruction-basic (text-with-image "Load: " (codify "tsgd_score")))
-                               (instruction-basic "Launch the image to see where to paste the code")
-                               (instruction-basic (text-with-image "Add this in start-game:" (p:scale (p:code (score-entity)) 2.5)))
-                               (instruction-goal "your new code in your project"))
+                         '()
+                         (list (instruction-basic "Use the launch code below")
+                               (instruction-basic (rendered-launchable-image (launcher-img score)))
+                               (instruction-basic "Copy the code that opens.")
+                               (instruction-basic "Use the launch code to the left to see where to paste it")
+                               (instruction-goal "your code updated"))
                          (launcher-img score-entity)))
 
 ; (with-award 1 add-quest-reward)
@@ -373,10 +400,11 @@
 
 (define (quest-cards)
   (map shrink
-       (make-picts "red" "Q7-" day7-2dgame (settings (bg (local-bitmap "bg-arcade.png")) SAMUS SAMUS-BONUS SAMUS-BONUS))))
+       (make-picts "red" "Q7-" day7-2dgame (settings (bg (local-bitmap "bg-arcade.png")) SAMUS SAMUS-BONUS SAMUS-BONUS)))
+  )
 
 (define (quest7)
    (quest-cards))
 
-(module+ test
-  (quest7))
+;(module+ test
+;  (quest7))
