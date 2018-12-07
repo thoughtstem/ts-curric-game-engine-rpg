@@ -36,7 +36,7 @@
     (p:code (#,house-type (posn #,p-x #,p-y)
                           #:tile #,bg-n)))
 
-   (code+hints code
+   (code+hints #:settings hints-on-right code
                (list house-type
                      (hint
                       (p:vl-append 10
@@ -93,7 +93,7 @@
   (define code 
     (p:code #,full))
 
-   (code+hints code
+   (code+hints #:settings hints-on-right code
                (list full
                      (hint (p:vl-append 10
                                         (p:text "Can you write all the")

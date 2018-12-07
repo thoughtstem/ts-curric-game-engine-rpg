@@ -6,7 +6,7 @@
 (require ts-curric-common)
 
 (require (only-in game-engine draw-entity)
-         (except-in game-engine-rpg room) )
+         game-engine-rpg )
 
 (require (prefix-in p: pict/code))
 (require (prefix-in p: pict))
