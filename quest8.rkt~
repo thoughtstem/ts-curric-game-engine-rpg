@@ -1,5 +1,6 @@
 #lang racket
 
+<<<<<<< HEAD
 ;High level goals:
 #;(
 
@@ -25,13 +26,19 @@
           )
 
 
+=======
+>>>>>>> 8c48b5e42525a2e2d6ed974d10c82ba9a1344302
 (provide quest8)
 
 (require ts-racket)
 (require ts-curric-common)
 
 (require (only-in game-engine draw-entity)
+<<<<<<< HEAD
          (except-in game-engine-rpg room) )
+=======
+         game-engine-rpg )
+>>>>>>> 8c48b5e42525a2e2d6ed974d10c82ba9a1344302
 
 (require (prefix-in p: pict/code))
 (require (prefix-in p: pict))
@@ -42,10 +49,17 @@
 
 (require "./common.rkt")
 
+<<<<<<< HEAD
 
 (define (blank-builder-code)
   (define c (code-blank))
 
+=======
+
+(define (blank-builder-code)
+  (define c (code-blank))
+
+>>>>>>> 8c48b5e42525a2e2d6ed974d10c82ba9a1344302
   (define b (p:frame (p:code
                       (builder (posn 200 200) #,c)) #:color "red"))
   
@@ -187,8 +201,13 @@
                                (instruction-goal "your builder working in game!"))
                          (p:scale (local-bitmap "q6-houses.png") .3)))
 
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> 8c48b5e42525a2e2d6ed974d10c82ba9a1344302
 (define note-relevant-data
   (activity-instructions "Jot down element data"
                          '()
@@ -256,8 +275,12 @@
 
 (define (quest-cards)
   (map shrink
+<<<<<<< HEAD
        (make-picts "red" "Q8-" day8-2dgame (settings (bg (local-bitmap "bg-arcade.png")) PIKACHU PIKACHU-BONUS PIKACHU-BONUS)))
   )
+=======
+       (make-picts "red" "Q8-" day8-2dgame (settings (bg (local-bitmap "bg-arcade.png")) PIKACHU PIKACHU-BONUS PIKACHU-BONUS))))
+>>>>>>> 8c48b5e42525a2e2d6ed974d10c82ba9a1344302
 
 
 (define (quest8)
