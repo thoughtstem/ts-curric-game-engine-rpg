@@ -31,7 +31,7 @@
 (require ts-curric-common)
 
 (require (only-in game-engine draw-entity)
-         (except-in game-engine-rpg room) )
+         game-engine-rpg)
 
 (require (prefix-in p: pict/code))
 (require (prefix-in p: pict))
@@ -96,34 +96,35 @@
   
   (p:inset
    (p:vl-append
-    (code+hints a
+    (code+hints #:settings hints-on-right
+                a
                 (list a
                       (hint
                        (p:code round-tree))))
-    (code+hints b
+    (code+hints b #:settings hints-on-right
                 (list b
                       (hint
                        (p:code pine-tree))))
-    (code+hints g
+    (code+hints g #:settings hints-on-right
                 (list g
                       (hint
                        (p:code apples))))
-    (code+hints c
+    (code+hints c #:settings hints-on-right
                 (list c
                       (hint
                        (p:vl-append
                         (p:code cat)
                         (p:text "Also try:")
                         (text-with-image (p:code white-cat) (p:text " or ") (p:code black-cat))))))
-    (code+hints d
+    (code+hints d #:settings hints-on-right
                 (list d
                       (hint
                        (p:code bat))))
-    (code+hints e
+    (code+hints e #:settings hints-on-right
                 (list e
                       (hint
                        (p:code slime))))
-    (code+hints f
+    (code+hints f #:settings hints-on-right
                 (list f
                       (hint
                        (p:code snake))))) 10
@@ -149,8 +150,6 @@
                     (hint
                      (p:text "Example added element.")))))
 
-;some of these are awfully wide to be in the vertical interactions window.
-;maybe make the hints optional to go side or bottom?
 (define-image-file element-list    images (asset-list))
 (define-image-file map-code        images (mini-map-code))
 (define-image-file my-builder-code images (blank-builder-code))
